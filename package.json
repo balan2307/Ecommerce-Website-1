@@ -1,19 +1,18 @@
 {
   "name": "ecommerce-website",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/varuns1007/Ecommerce-Website.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/varuns1007/Ecommerce-Website/issues"
-  },
-  "homepage": "https://github.com/varuns1007/Ecommerce-Website#readme"
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "firebase-admin": "^9.11.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  }
 }
