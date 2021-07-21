@@ -13,6 +13,37 @@ const InitRoutes = (app) => {
   app.use("/users", usersRouter);
 
   console.log("Routes Initialized")
+
+  //Testing firebase
+  
+  // db.collection("cities")
+  //   .doc("Mumbai")
+  //   .set({
+  //     name: "Mumbai",
+  //     state: "Maharashtra",
+  //     country: "India",
+  //   })
+  //   .then(() => {
+  //     console.log("Document successfully written!");
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error writing document: ", error);
+  //   });
+  // db.collection("cities")
+  //   .where("name","==","Mumbai")
+  //   .get()
+  //   .then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       console.log(doc.id);
+  //       console.log(doc.data());
+  //       // console.log(`${doc.id} => ${doc.data()}`);
+  //     });
+  //   });
+  // db.collection("cities")
+  //   .doc("LA")
+  //   .onSnapshot((doc) => {
+  //     console.log("Current data: ", doc.data());
+  //   });
 }
 
 
