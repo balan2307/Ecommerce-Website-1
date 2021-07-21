@@ -1,4 +1,4 @@
 
 module.exports.Index = (req, res) => {
-  res.send("respond with a resource");  
+  res.send("respond with a resource"); //test response  
 }
