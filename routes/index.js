@@ -1,5 +1,6 @@
 const express = require('express');
 const usersRouter = require("./users");
+const adminRouter = require('./admin');
 // const firebase = require('../config/firebaseInit');
 // const db = firebase.firestore();/
 const db = require('../config/firebaseInit');
@@ -11,6 +12,7 @@ const InitRoutes = (app) => {
   });
 
   app.use("/users", usersRouter);
+  app.use("/admin", adminRouter);
 
   console.log("Routes Initialized")
 
