@@ -8,5 +8,10 @@ admin.initializeApp({
 
 let db = admin.firestore(); //firestore connected
 console.log("Connected to firebase Successfully");
-module.exports = db;
 
+let storage = admin.storage();
+module.exports = {
+  firebase:admin,
+  db: db,
+  storage:storage,
+};
