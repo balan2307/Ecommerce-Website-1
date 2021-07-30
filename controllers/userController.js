@@ -7,20 +7,21 @@ module.exports.Index = (req, res) => {
 
 
 //testing -function which adds a collection on db
-module.exports.AddCollection=(req,res)=>
+module.exports.AddCollection=async(req,res)=>
 {
   
   console.log("adding collection");
-  db.collection("shop").doc("shop1_furniture").set({
-      store_name: "Vintage Room",
-      store_owner:'Vighnesh Kadam',
-      store_url:'',
+  db.collection("shop").add({
+      store_name: "Test Store_2",
+      store_owner:'Test2',
+      store_url:'testStore',
       products:[],
       customer:[],
       orders:[]
 
      
   })
+  // const del =await db.collection('shop').doc('aRbYm09LhjT8JqpT1BMO').delete();
 
   res.send("Added collection")
 
