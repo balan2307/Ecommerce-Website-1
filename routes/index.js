@@ -10,6 +10,9 @@ const InitRoutes = (app) => {
   app.get("/", function (req, res, next) {
     res.render("index", { title: "Express" });
   });
+  app.get("/test", function (req, res, next) {
+    res.render("test");
+  });
 
   app.use("/users", usersRouter);
   app.use("/admin", adminRouter);
