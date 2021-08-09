@@ -61,8 +61,7 @@ module.exports.login = async (req, res) => {
 };
 
 module.exports.logout = (req, res) => {
-  req.session.destroy();
-
   req.flash("success", "You are logged out!");
+  req.session.destroy();
   res.redirect("/admin/login");
 };
