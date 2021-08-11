@@ -1,38 +1,41 @@
 $(document).ready(function () {
-	$('#example').DataTable({
-		aaSorting: [],
-		responsive: true,
+  $("#example").DataTable({
+    aaSorting: [],
+    responsive: true,
 
-		columnDefs: [
-			{
-				responsivePriority: 1,
-				targets: 0,
-			},
-			{
-				responsivePriority: 2,
-				targets: -1,
-			},
-		],
-	});
+    columnDefs: [
+      {
+        responsivePriority: 1,
+        targets: 0,
+      },
+      {
+        responsivePriority: 2,
+        targets: -1,
+      },
+    ],
+  });
 
-	$('.dataTables_filter input').attr('placeholder', 'Search here...').css({
-		width: '300px',
-		display: 'inline-block',
-	});
+  $(".dataTables_filter input").attr("placeholder", "Search here...").css({
+    width: "300px",
+    display: "inline-block",
+  });
 });
 
 function changeStatus(index) {
 	let status = document.querySelector(`#status-button-${index}`);
-	if (status.innerText == 'Enabled') {
-		status.innerText = 'Draft';
-		status.classList.remove('bg-success');
+	console.log([status]);
+  if (status.innerText == "Active") {
+    status.innerText = "Draft";
+    status.classList.remove("bg-success");
 
-		status.classList.add('bg-danger');
-	} else if (status.innerText == 'Draft') {
-		status.innerText = 'Enabled';
+    status.classList.add("bg-danger");
+  } else if (status.innerText == "Draft") {
+    status.innerText = "Active";
 
-		status.classList.add('bg-success');
+    status.classList.add("bg-success");
 
-		status.classList.remove('bg-danger');
-	}
+    status.classList.remove("bg-danger");
+  }
 }
+
+// <%= products[1].productStatus=== "Active"? "bg-success": "bg-danger" %>

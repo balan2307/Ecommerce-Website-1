@@ -9,13 +9,112 @@
 	</head>
 	<body style="background-color: #e4e9f7">
 		<%- include('../partials/navbar') %>
-		<style></style>
 
+		
+		
+		<!-- Add Products Modal -->
+		<div class="modal fade" id="addProductsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+				<button type="button" class="btn-close" style="background-color: #1d1b31; color: white" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form class="needs-validation" action="/admin/addProduct" method="post" enctype="multipart/form-data" novalidate>
+					<div class="row">
+
+						<div class="col-12 mb-3">
+							<label for="productName" class="form-label">Product Name</label>
+							<input type="text" class="form-control" id="productName" placeholder="Camera" required>
+							<div class="invalid-feedback">
+							Kindly provide a product name!
+							</div>
+						</div>
+						<div class="col-8 mb-3">
+							<label for="productImage" class="form-label">Product Image</label>
+							<input type="file" accept=".png,.jpg,.jpeg" class="form-control" id="productImage" required>
+							<div class="invalid-feedback">
+							Kindly provide product image!
+							</div>
+						</div>
+						<div class="col-3">
+							<img style="width: -webkit-fill-available;" id="imagePreviewDiv" src="https://pngimg.com/uploads/square/square_PNG19.png" alt="your image" />
+						</div>
+						<div class="col-4 mb-3">
+							<label for="productPrice" class="form-label">Product Price</label>
+							<div class="input-group has-validation">
+							<span class="input-group-text" id="inputGroupPrepend">₹</span>
+							<input type="number" min="1" class="form-control" id="productPrice" placeholder="250" aria-describedby="inputGroupPrepend" required>
+							<div class="invalid-feedback">
+								Kindly provide a product price!
+							</div>
+							</div>
+						</div>
+						<div class="col-4 mb-3">
+							<label for="productInventory" class="form-label">Inventory Level</label>
+							<input type="number" min="1" class="form-control" placeholder="1250" id="productInventory" required>
+							<div class="invalid-feedback">
+							Kindly provide product inventory level!
+							</div>
+						</div>
+						<div class="col-4 mb-3">
+							<label for="productStatus" class="form-label">Product Status</label>
+							<select class="form-select" id="productStatus" required>
+							<option selected disabled value="">Choose...</option>
+							<option value="Active">Active</option>
+							<option value="Draft">Draft</option>
+							</select>
+							<div class="invalid-feedback">
+							Please select a product state!
+							</div>
+						</div>
+						<div class="col-9 mb-3">
+							<label for="productDescription" class="form-label">Product Description</label>
+							<textarea name="productDescription" class="form-control" placeholder="Describe your product here, this will be read by customers on your store" id="productDescription" cols="30" rows="3" required></textarea>
+							<div class="invalid-feedback">
+							Please provide a product description!
+							</div>
+						</div>
+						
+						<div class="col-12 mb-3 d-flex gap-2 justify-content-end">
+							<button type="button" class="btn" style="background-color: white; color: #1d1b31;border: 1px solid #1d1b31;" data-bs-dismiss="modal">Close</button>
+							<button class="btn" style="background-color: #1d1b31; color: white" type="submit">Submit form</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			</div>
+		</div>
+		</div>
+
+		<!-- Toast -->
+		<% if (message) { %>
+			<div style="z-index: 99;" aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts">
+				<div class="toast-container position-absolute top-0 end-0 p-3" id="toastPlacement">
+					<div class="toast">
+					<div class="toast-header">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLvmjZbtnqotRfrFrv0ghNDmvpGEdnYqC-qg&usqp=CAU" class="rounded me-2" style="width: 8%!important;" alt="...">
+						<strong class="me-auto">Shoppers Unite</strong>
+						<small>11 mins ago</small>
+						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+					<div class="toast-body">
+						<%= message %> .
+					</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+			
 		<section class="root-section">
 			<h2 class="text">Products</h2>
 			<div class="container capsule">
 				<div class="row py-5">
 					<div class="col-12">
+						<button type="button" style="background-color: #1d1b31; color: white" class="btn float-end mb-3" data-bs-toggle="modal" data-bs-target="#addProductsModal">
+							Add Products
+						</button>
 						<table
 							id="example"
 							class="table table-hover responsive nowrap"
@@ -32,7 +131,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% for( let index = 0; index < 100; index++ ) { %>
+								<% for( let index = 0; index < products.length; index++ ) { %>
 
 								<tr>
 									<td>
@@ -40,8 +139,8 @@
 											<div class="d-flex align-items-center">
 												<div class="avatar avatar-blue mr-3">
 													<img
-														src="https://images.unsplash.com/photo-1622920330554-500476c41f94?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fG1vYmlsZSUyMHBob25lJTIwY2xvc2V1cHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
-														alt=""
+														src="<%= products[index].productImage %> "
+														alt="productImage"
 														style="width: 100%; height: 100%"
 													/>
 												</div>
@@ -51,7 +150,8 @@
 														class="font-weight-bold mb-0 pl-2"
 														style="border-bottom: none"
 													>
-														Ethan Black
+														<!-- Ethan Black -->
+														<%= products[index].productName %> 
 													</p>
 												</div>
 											</div>
@@ -59,14 +159,14 @@
 									</td>
 									<td>
 										<div
-											class="badge bg-success status"
+											class="badge <%= products[index].productStatus=== "Active"? "bg-success": "bg-danger" %> status"
 											id="status-button-<%= index%>"
 										>
-											Enabled
+											<%= products[index].productStatus %> 
 										</div>
 									</td>
-									<td>10 in stock</td>
-									<td>320 INR</td>
+									<td><%= products[index].productInventory %>  in stock</td>
+									<td><%= products[index].productPrice %>  INR</td>
 									<td>
 										<div class="dropdown" style="color: white">
 											<button
@@ -92,17 +192,13 @@
 													>
 												</li>
 												<li>
-													<a class="dropdown-item" href="#">Another action</a>
-												</li>
-												<li>
-													<a class="dropdown-item" href="#"
-														>Something else here</a
-													>
+													<a class="dropdown-item" href="#">Edit Product</a>
 												</li>
 											</ul>
 										</div>
 									</td>
 								</tr>
+								
 								<% } %>
 							</tbody>
 						</table>
@@ -112,5 +208,8 @@
 		</section>
 
 		<script src="/javascripts/table.js"></script>
+		<script src="/javascripts/form-validation-client.js"></script>
+		<script src="/javascripts/forms.js"></script>
+
 	</body>
 </html>

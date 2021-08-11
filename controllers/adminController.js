@@ -29,24 +29,31 @@ const uploadFiles = upload.single("product-image");
 
 module.exports.ViewProducts = (req, res) => {
   const docID = "L8OaH4J54q8rL7p5rxGo";
-  // db.collection("shop")
-  //   .doc(docID)
-  //   .get()
-  //   .then((doc) => {
-  //     if (doc.exists) {
-  //       console.log("Document data:", doc.data());
-  //       res.status(200).json(doc.data());
-  //     } else {
-  //       // doc.data() will be undefined in this case
-  //       console.log("No such document!");
-  //       res.status(500).send("No such document!");
-  //     }
-  //   })
-  //   .catch(function (error) {
-  //     console.log("Error getting document:", error);
-  //     res.status(500).send("Error getting document! " + error);
-  //   });
-  res.render("admin/products-page");
+  db.collection("shop")
+    .doc(docID)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        const { products } = doc.data();
+        res.render("admin/products-page", {
+          products: Array(100)
+            .fill("")
+            .map((_, i) => i % 2 === 0 ? products[0] : products[1]),
+          // message: req.flash("ProductsMessage"),
+          message:"Welcome to the Products Page"
+        });
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        res.status(500).send("No such document!");
+      }
+    })
+    .catch(function (error) {
+      console.log("Error getting document:", error);
+      res.status(500).send("Error getting document! " + error);
+    });
+  // res.render("admin/products-page");
 };
 
 module.exports.AddToMulter = (req, res, next) => {
@@ -133,7 +140,8 @@ module.exports.AddProducts = async (req, res) => {
               products:
                 firebase.firebase.firestore.FieldValue.arrayUnion(productObj),
             });
-          res.send("Product Added Successfully");
+          req.flash("ProductsMessage", "Product added successfully!");
+          res.redirect("/admin/products");
         })
     //delete the file since it is stored in google cloud
     fs.unlink(ref, (err) => {
