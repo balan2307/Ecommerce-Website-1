@@ -44,7 +44,7 @@ app.use((req,res,next)=>
     res.locals.success=req.flash('success');
     res.locals.ferror=req.flash('ferror');  
     res.locals.user=req.session.store;
-    console.log("Current user ",res.locals.user)
+    // console.log("Current user ",res.locals.user)
     next();
 })
 //Initialize routes

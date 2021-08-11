@@ -38,7 +38,7 @@ module.exports.register = async (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-  console.log("User", req.body);
+  
   const { email, password } = req.body;
   const user = await db.collection("users").where("email", "==", email).get();
   try {

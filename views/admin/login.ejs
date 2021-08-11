@@ -17,15 +17,22 @@
       <div class="container my-5">
         <div class="row g-0 shadow top">
           <div class="d-none d-lg-inline-block col-lg-6 mid">
-            <img src="/images/login.jpg" alt="" class="img-fluid" />
+            <img src="/images/login.jpg" alt="" class="img-fluid img" />
           </div>
           <div class="col-lg-6 px-5 pt-4 bottom">
             <h1 class="font-weight-bold mb-4">Brand name</h1>
 
-            <form action="/admin/login" class="mx-2 my-5" method="POST">
+            <form
+              action="/admin/login"
+              class="mx-2 my-5 form validated-login-form"
+              novalidate
+              method="POST"
+            >
               <h3 class="mb-4">Welcome back!</h3>
               <div class="form-row mb-3">
-                <label for="email" class="form-label">Owner's Email</label>
+                <label for="email" class="form-label label"
+                  >Owner's Email</label
+                >
                 <div class="input-group col-lg-12">
                   <span class="icons input-group-addon"
                     ><i class="fas fa-user"></i
@@ -35,14 +42,15 @@
                     id="email"
                     name="email"
                     placeholder="Owner's Email"
-                    class="form-control"
+                    class="form-control input"
                     autocomplete="off"
+                    required
                   />
                 </div>
               </div>
 
               <div class="form-row mb-3">
-                <label for="Password " class="form-label">Password</label>
+                <label for="password " class="form-label label">Password</label>
                 <div class="col-lg-12 input-group">
                   <span class="icons input-group-addon"
                     ><i class="fas fa-lock"></i
@@ -52,8 +60,9 @@
                     name="password"
                     id="Password"
                     placeholder="Password"
-                    class="form-control shadow-5"
+                    class="form-control shadow-5 input"
                     autocomplete="off"
+                    required
                   />
                 </div>
               </div>
@@ -81,6 +90,7 @@
       integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
       crossorigin="anonymous"
     ></script>
+    <script src="/javascripts/validatelogin.js"></script>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
