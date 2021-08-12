@@ -17,7 +17,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+				<h5 class="modal-title" id="modal-title">Add Product</h5>
 				<button type="button" class="btn-close" style="background-color: #1d1b31; color: white" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
@@ -26,14 +26,14 @@
 
 						<div class="col-12 mb-3">
 							<label for="productName" class="form-label">Product Name</label>
-							<input type="text" class="form-control" id="productName" placeholder="Camera" required>
+							<input type="text" class="form-control" name="productName" id="productName" placeholder="Camera" required>
 							<div class="invalid-feedback">
 							Kindly provide a product name!
 							</div>
 						</div>
 						<div class="col-8 mb-3">
 							<label for="productImage" class="form-label">Product Image</label>
-							<input type="file" accept=".png,.jpg,.jpeg" class="form-control" id="productImage" required>
+							<input type="file" accept=".png,.jpg,.jpeg" class="form-control" name="product-image" id="product-image" required>
 							<div class="invalid-feedback">
 							Kindly provide product image!
 							</div>
@@ -45,7 +45,7 @@
 							<label for="productPrice" class="form-label">Product Price</label>
 							<div class="input-group has-validation">
 							<span class="input-group-text" id="inputGroupPrepend">₹</span>
-							<input type="number" min="1" class="form-control" id="productPrice" placeholder="250" aria-describedby="inputGroupPrepend" required>
+							<input type="number" min="1" class="form-control" name="productPrice" id="productPrice" placeholder="250" aria-describedby="inputGroupPrepend" required>
 							<div class="invalid-feedback">
 								Kindly provide a product price!
 							</div>
@@ -53,14 +53,14 @@
 						</div>
 						<div class="col-4 mb-3">
 							<label for="productInventory" class="form-label">Inventory Level</label>
-							<input type="number" min="1" class="form-control" placeholder="1250" id="productInventory" required>
+							<input type="number" min="1" class="form-control" placeholder="1250" name="productInventory" id="productInventory" required>
 							<div class="invalid-feedback">
 							Kindly provide product inventory level!
 							</div>
 						</div>
 						<div class="col-4 mb-3">
 							<label for="productStatus" class="form-label">Product Status</label>
-							<select class="form-select" id="productStatus" required>
+							<select class="form-select" name="productStatus" id="productStatus" required>
 							<option selected disabled value="">Choose...</option>
 							<option value="Active">Active</option>
 							<option value="Draft">Draft</option>
@@ -88,10 +88,113 @@
 		</div>
 		</div>
 
+		<!-- Edit Products Modal -->
+		<div class="modal fade" id="EditProductsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-title">Edit Product</h5>
+				<button type="button" class="btn-close" style="background-color: #1d1b31; color: white" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form class="needs-validation" id="editModalForm" action="" method="post" enctype="multipart/form-data" novalidate>
+					<div class="row">
+
+						<div class="col-12 mb-3">
+							<label for="productName-edit" class="form-label">Product Name</label>
+							<input type="text" class="form-control" name="productName" id="productName-edit" placeholder="Camera" required>
+							<div class="invalid-feedback">
+							Kindly provide a product name!
+							</div>
+						</div>
+						<div class="col-8 mb-3">
+							<label for="productImage-edit" class="form-label">Product Image</label>
+							<input type="file" accept=".png,.jpg,.jpeg" class="form-control" name="product-image" id="product-image-edit">
+							<!-- <div class="invalid-feedback">
+							Kindly provide product image!
+							</div> -->
+						</div>
+						<div class="col-3">
+							<img style="width: -webkit-fill-available;" id="imagePreviewDiv-edit" src="https://pngimg.com/uploads/square/square_PNG19.png" alt="your image" />
+						</div>
+						<div class="col-4 mb-3">
+							<label for="productPrice-edit" class="form-label">Product Price</label>
+							<div class="input-group has-validation">
+							<span class="input-group-text" id="inputGroupPrepend">₹</span>
+							<input type="number" min="1" class="form-control" name="productPrice" id="productPrice-edit" placeholder="250" aria-describedby="inputGroupPrepend" required>
+							<div class="invalid-feedback">
+								Kindly provide a product price!
+							</div>
+							</div>
+						</div>
+						<div class="col-4 mb-3">
+							<label for="productInventory-edit" class="form-label">Inventory Level</label>
+							<input type="number" min="1" class="form-control" placeholder="1250" name="productInventory" id="productInventory-edit" required>
+							<div class="invalid-feedback">
+							Kindly provide product inventory level!
+							</div>
+						</div>
+						<div class="col-4 mb-3">
+							<label for="productStatus-edit" class="form-label">Product Status</label>
+							<select class="form-select" name="productStatus" id="productStatus-edit" required>
+							<option selected disabled value="">Choose...</option>
+							<option value="Active">Active</option>
+							<option value="Draft">Draft</option>
+							</select>
+							<div class="invalid-feedback">
+							Please select a product state!
+							</div>
+						</div>
+						<div class="col-9 mb-3">
+							<label for="productDescription-edit" class="form-label">Product Description</label>
+							<textarea name="productDescription" class="form-control" placeholder="Describe your product here, this will be read by customers on your store" id="productDescription-edit" cols="30" rows="3" required></textarea>
+							<div class="invalid-feedback">
+							Please provide a product description!
+							</div>
+						</div>
+						
+						<div class="col-12 mb-3 d-flex gap-2 justify-content-end">
+							<button type="button" class="btn" style="background-color: white; color: #1d1b31;border: 1px solid #1d1b31;" data-bs-dismiss="modal">Close</button>
+							<button class="btn" style="background-color: #1d1b31; color: white" type="submit">Submit form</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			</div>
+		</div>
+		</div>
+
+		<!-- Delete Products Modal -->
+		<div class="modal fade" id="DeleteProductsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-title">Delete Product</h5>
+				<button type="button" class="btn-close" style="background-color: #1d1b31; color: white" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form class="needs-validation" id="deleteModalForm" action="" method="post" enctype="multipart/form-data" novalidate>
+					<div class="row">
+
+						<div class="col-12 mb-3">
+							<p id="warningMessage"></p>
+						</div>
+						
+						<div class="col-12 mb-3 d-flex gap-2 justify-content-end">
+							<button type="button" class="btn" style="background-color: white; color: #1d1b31;border: 1px solid #1d1b31;" data-bs-dismiss="modal">Close</button>
+							<button class="btn" style="background-color: #1d1b31; color: white" type="submit">Confirm</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			</div>
+		</div>
+		</div>
+
 		<!-- Toast -->
-		<% if (message) { %>
+		<% if (message.length>0) { %>
 			<div style="z-index: 99;" aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts">
-				<div class="toast-container position-absolute top-0 end-0 p-3" id="toastPlacement">
+				<div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3" id="toastPlacement">
 					<div class="toast">
 					<div class="toast-header">
 						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLvmjZbtnqotRfrFrv0ghNDmvpGEdnYqC-qg&usqp=CAU" class="rounded me-2" style="width: 8%!important;" alt="...">
@@ -100,7 +203,7 @@
 						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 					</div>
 					<div class="toast-body">
-						<%= message %> .
+						<%= message %>
 					</div>
 					</div>
 				</div>
@@ -110,7 +213,7 @@
 		<section class="root-section">
 			<h2 class="text">Products</h2>
 			<div class="container capsule">
-				<div class="row py-5">
+				<div class="row py-1">
 					<div class="col-12">
 						<button type="button" style="background-color: #1d1b31; color: white" class="btn float-end mb-3" data-bs-toggle="modal" data-bs-target="#addProductsModal">
 							Add Products
@@ -192,7 +295,10 @@
 													>
 												</li>
 												<li>
-													<a class="dropdown-item" href="#">Edit Product</a>
+													<a class="dropdown-item" href="#" onclick="editProductModal('<%= products[index].productId %>')">Edit Product</a>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#" onclick="deleteProductModal('<%= products[index].productId %>','<%= products[index].productName %>')">Delete Product</a>
 												</li>
 											</ul>
 										</div>
@@ -206,7 +312,7 @@
 				</div>
 			</div>
 		</section>
-
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<script src="/javascripts/table.js"></script>
 		<script src="/javascripts/form-validation-client.js"></script>
 		<script src="/javascripts/forms.js"></script>
