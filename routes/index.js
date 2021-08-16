@@ -1,7 +1,8 @@
 const express = require('express');
 const usersRouter = require("./users");
 const adminRouter = require('./admin');
-const storeRouter=require('./store');
+const storeRouter = require('./store');
+
 // const firebase = require('../config/firebaseInit');
 // const db = firebase.firestore();/
 const db = require('../config/firebaseInit');
