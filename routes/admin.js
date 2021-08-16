@@ -28,10 +28,10 @@ router.post(
   adminController.DeleteProduct
 );
 
-router
-  .route("/register")
-  .get((req, res) => res.render("admin/register"))
-  .post(adminController.register);
+// router
+//   .route("/register")
+//   .get((req, res) => res.render("admin/register"))
+//   .post(authController.register);
 
 router.route('/register')
 .get((req,res)=>res.render('admin/register'))
