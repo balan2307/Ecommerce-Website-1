@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/adminController");
+const authController=require("../controllers/authController")
 
 /* GET users listing. */
 router.get("/products", adminController.ViewProducts);
@@ -17,13 +18,13 @@ router.post("/deleteProducts/:productId", adminController.DeleteProduct);
 
 router.route('/register')
 .get((req,res)=>res.render('admin/register'))
-.post(adminController.register)
+.post(authController.register)
 
 router.route('/login')
 .get((req,res)=>res.render('admin/login'))
-.post(adminController.login)
+.post(authController.login)
 
-router.get('/logout',adminController.logout)
+router.get('/logout',authController.logout)
 router.get('/test',(req,res)=>
 {
     res.send(req.session);
