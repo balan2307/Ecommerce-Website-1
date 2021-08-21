@@ -28,6 +28,9 @@ router.post(
   adminController.DeleteProduct
 );
 
+router.route('/dashboard')
+  .get((req, res) => res.render('admin/dashboard'))
+
 // router
 //   .route("/register")
 //   .get((req, res) => res.render("admin/register"))

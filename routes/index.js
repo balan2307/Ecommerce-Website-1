@@ -10,23 +10,10 @@ const db = require('../config/firebaseInit');
 
 const InitRoutes = (app) => {
   /* GET home page. */
-  app.get("/", function (req, res, next) {
-    res.render("index", { title: "Express" });
-  });
-  app.get("/home",(req, res) =>
-  {
-    res.render("landingPage.ejs");
-  });
-  app.get("/test", function (req, res, next) {
-    res.render("test");
-  });
-
-
-
+  app.use("/",landingRouter);
   app.use("/users", usersRouter);
   app.use("/admin", adminRouter);
   app.use("/store",storeRouter);
-  app.use("/",landingRouter);
 
   console.log("Routes Initialized")
 

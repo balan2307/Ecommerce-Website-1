@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
+	<%- include('partials/imports') %>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -13,15 +14,38 @@
 
 </head>
 <body>
+
+    
     
 <!-- header section starts  -->
 
 <header>
 
+    
+
     <a href="#" class="logo"><span>Shop</span>App</a>
 
     <input type="checkbox" id="menu-bar">
     <label for="menu-bar" class="fas fa-bars"></label>
+
+    <!-- Toast -->
+		<% if (message.length>0) { %>
+			<div style="z-index: 99;" aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts">
+				<div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3" id="toastPlacement">
+					<div class="toast">
+					<div class="toast-header">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLvmjZbtnqotRfrFrv0ghNDmvpGEdnYqC-qg&usqp=CAU" class="rounded me-2" style="width: 8%!important;" alt="...">
+						<strong class="me-auto">Shoppers Unite</strong>
+						<small>11 mins ago</small>
+						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+					<div class="toast-body">
+						<%= message %>
+					</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
 
     <nav class="navbar">
         <a href="#home">home</a>
@@ -29,6 +53,7 @@
         <a href="#about">about</a>
         <a href="#review">review</a>
         <a href="#contact">contact</a>
+        <a href="/admin/login" class="btn" style="color: #fff;">Login</a>
     </nav>
 
 </header>
@@ -42,7 +67,7 @@
     <div class="content">
         <h3>Best E-commerce <span>website</span></h3>
         <p>save your time and money</p>
-        <a href="#" class="btn">download now</a>
+        <a href="/admin/register" class="btn">Signup Now</a>
     </div>
 
     <div class="image">
@@ -105,10 +130,10 @@
             <p>Shopping wastes a lot of time and money. In order to buy our goods we spend a lot in travelling.</p>
             <p>So this is a fully flexible e-commerce site where with one click you can buy your desired product from you home.
             </p>
-            <div class="buttons">
+            <!-- <div class="buttons">
                 <a href="#" class="btn"> <i class="fab fa-apple"></i> app store </a>
                 <a href="#" class="btn"> <i class="fab fa-google-play"></i> google-play </a>
-            </div>
+            </div> -->
         </div>
 
     </div>
@@ -210,27 +235,27 @@
         <img src="/images/landing_page/contact-img.png" alt="">
     </div>
 
-    <form action="">
+    <form action="/contactUs" method="POST">
 
         <h1 class="heading">contact us</h1>
 
         <div class="inputBox">
-            <input type="text" required>
+            <input type="text" name="name" id="name" required>
             <label>name</label>
         </div>
 
         <div class="inputBox">
-            <input type="email" required>
+            <input type="email" name="email" id="email" required>
             <label>email</label>
         </div>
 
         <div class="inputBox">
-            <input type="number" required>
+            <input type="number" name="phone" id="phone" required>
             <label>phone</label>
         </div>
 
         <div class="inputBox">
-            <textarea required name="" id="" cols="30" rows="10"></textarea>
+            <textarea required name="message" id="message" cols="30" rows="10"></textarea>
             <label>message</label>
         </div>
 
