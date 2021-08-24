@@ -15,6 +15,7 @@ router.post(
   adminController.AddProducts
 );
 
+router.post("/changeStatus",adminController.changeStatus);
 router.post(
   "/editProducts/:productId",
   isLoggedIn,
@@ -46,6 +47,7 @@ router.get('/test',(req,res)=>
 {
     res.send(req.session);
 })
+router.get("/customers",adminController.showCustomer)
 // router
 //   .route("/login")
 //   .get((req, res) => res.render("admin/login"))
