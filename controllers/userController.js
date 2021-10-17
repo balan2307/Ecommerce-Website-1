@@ -62,7 +62,7 @@ module.exports.StoreFront=async (req, res) => {
     
     
 
-  res.render("store/storefront.ejs",{user,products:testProd,id,st_name,role});
+  res.render("store/wholeseller/storefront.ejs",{user,products:testProd,id,st_name,role});
 }
 
 //Gloabal store for wholeseller's product
@@ -107,7 +107,7 @@ module.exports.wholeProd=async(req,res)=>
     
   )
   testProd=Array.from({length:4},()=>allproducts).flat();
-  res.render("store/allproducts.ejs",{products:testProd,st_name,role,id});
+  res.render("store/wholeseller/allproducts.ejs",{products:testProd,st_name,role,id});
 
 }
 
@@ -133,15 +133,15 @@ module.exports.ProductPage=async(req,res)=>
     st_name=data.store_name;
     settings=data.settings;
     role=data.role;
-    // console.log("setting check",settings);
-
+    console.log("setting check",sid,data)
 
 
     productFound=user.find((product) => product.productId === pid);
 
     if(productFound)
     {
-      res.render("store/product.ejs",{product:productFound,st_name,id:sid,pid,settings,role});
+      // if(user.role)
+      res.render("store/wholeseller/product.ejs",{product:productFound,st_name,id:sid,pid,settings,role});
   
     }
     else
@@ -295,7 +295,7 @@ module.exports.renderAllproducts=async(req,res)=>
 
      testProd=Array.from({length:4},()=>products).flat();
 
-  res.render("store/allproducts.ejs",{user,products:testProd,id:sid,st_name,role});
+  res.render("store/wholeseller/allproducts.ejs",{user,products:testProd,id:sid,st_name,role});
  
 
 }
@@ -312,24 +312,32 @@ module.exports.Updatedropshipper=async(req,res)=>
   let productFound;
   const dropShipper = await getStore(docID);
   const {products:dropshipperProd}=dropShipper;
-
+  console.log("ID",sid,pid,qty)
     
   const wholeseller=await getStore(sid);
   const {products:wholesellerProd}=wholeseller;
+  const {products:wholesellerProd2}=wholeseller;
 
   checkifPresent=dropshipperProd.find((product) => product.productId === pid);
   
   // console.log("Bought",productFound)
-  console.log("Drop shipper",user.id)
+  // console.log("Drop shipper",user.id)
   if(!checkifPresent)
   {
+  //  console.log("Wholse",wholesellerProd);
   productFound=wholesellerProd.find((product) => product.productId === pid);
-  productFound.productInventory=qty;
+  console.log("Prodfound",productFound);
+  productFound.productInventory=parseInt(qty);
+  console.log("Wholeseller prod",wholesellerProd)
+
   dropshipperProd.push(productFound);
   
-  await db.collection('users').doc(docID).update({products:dropshipperProd})
-  console.log("New",dropshipperProd);
-  console.log("Bought")
+  const update=await db.collection('users').doc(docID).update({products:dropshipperProd})
+  console.log("Doc",docID);
+  // console.log("New",update);
+  // console.log("Wholeseller",wholesellerProd)
+ 
+  // console.log("Bought New")
   
   }
   else
@@ -347,23 +355,54 @@ module.exports.Updatedropshipper=async(req,res)=>
     // dropshipperProd.remove((product) => product.productId === pid);
     // dropshipperProd.push(productFound);
     await db.collection('users').doc(docID).update({products:dropshipperProd})
-    console.log("Stock");
-
-
-    
+    // console.log("Stock");
 
 
 
   }
 
-  wholesellerProd.forEach(product=>{
-    if(product.productId==pid){
+  // wholesellerProd2.forEach(product=>{
+  //   if(product.productId==pid){
 
-      product.productInventory=parseInt(product.productInventory)-parseInt(qty);
-    }
-  })
-  await db.collection('users').doc(sid).update({products:wholesellerProd})
-  console.log("Wholeseller updated");
+  //     console.log("product inven",product.productInventory,"Qty",qty);
+  //     console.log("Product",product);
+  //     product.productInventory=parseInt(product.productInventory)-parseInt(qty);
+  //     console.log("Product",product);
+
+  //   }
+  // })
+  // await db.collection('users').doc(sid).update({products:wholesellerProd})
+  // console.log("Wholeseller updated");
+
+  db.collection("users")
+    .doc(sid)
+    .get()
+    .then((result) => {
+      //   console.log(JSON.stringify(result.data(), null, 2));
+      const store = result.data();
+      const { products } = store;
+      products.find((prod) => {
+        if (prod.productId === pid) {
+          prod.productInventory -= qty;
+          return true;
+        }
+      });
+      // console.log(products);
+      db.collection("users")
+        .doc(sid)
+        .set(
+          {
+            products: products,
+          },
+          { merge: true }
+        )
+        .then((result) => {
+          console.log("product inventory updated in store orders");
+        })
+        .catch((err) => {
+          console.log("Error in product inventory updation:", err);
+        });
+    });
 
 
 
