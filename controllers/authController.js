@@ -56,9 +56,7 @@ module.exports.register = async (req, res) => {
         store.id = user.id;
         req.session.store = store;
         req.flash("success", "You have succesfully Registered!");
-        
-        res.redirect("/");
-        
+        res.redirect("/admin/dashboard");
       }
     } catch (error) {
       console.log(`Error while registering user: ${error}`);
@@ -79,7 +77,7 @@ module.exports.register = async (req, res) => {
         store.id = dbuser.id;
         req.session.store = store;
         req.flash("success", "Welcome Back!");
-        res.redirect("/");
+        res.redirect("/admin/dashboard");
       } else {
         req.flash("ferror", "Entered Username or Password is Incorrect");
         res.redirect("/admin/login");

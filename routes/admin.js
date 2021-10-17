@@ -16,6 +16,7 @@ router.post(
   adminController.AddProducts
 );
 
+router.post("/changeStatus",adminController.changeStatus);
 router.post(
   "/editProducts/:productId",
   isLoggedIn,
@@ -28,6 +29,9 @@ router.post(
   isLoggedIn,
   adminController.DeleteProduct
 );
+
+router.route('/dashboard')
+  .get((req, res) => res.render('admin/dashboard'))
 
 // router
 //   .route("/register")
@@ -60,6 +64,7 @@ router.route('/setting')
 .post(authController.postForm);
 
 
+router.get("/customers",adminController.showCustomer)
 // router
 //   .route("/login")
 //   .get((req, res) => res.render("admin/login"))

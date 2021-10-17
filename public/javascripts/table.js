@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
   $("#example").DataTable({
     aaSorting: [],
@@ -21,9 +23,11 @@ $(document).ready(function () {
   });
 });
 
-function changeStatus(index) {
+function changeStatus(index,productId) {
+  console.log("prod:",productId)
 	let status = document.querySelector(`#status-button-${index}`);
-	console.log([status]);
+ 
+  console.log([status]);
   if (status.innerText == "Active") {
     status.innerText = "Draft";
     status.classList.remove("bg-success");
@@ -36,6 +40,20 @@ function changeStatus(index) {
 
     status.classList.remove("bg-danger");
   }
+
+// console.log("client side:",docID)
+  axios.post('/admin/changeStatus', {
+    status: status.innerText,
+   productId:productId,
+   
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
 }
 
 // <%= products[1].productStatus=== "Active"? "bg-success": "bg-danger" %>

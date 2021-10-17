@@ -42,10 +42,12 @@ module.exports.ViewProducts = async (req, res) => {
   const store = await getStore(docID);
   const testProd=Array.from({length:25},()=>store.products).flat();
 
+  
+
   res.render("admin/products-page", {
     message: req.flash("ProductsMessage"),
-    // products: store.products,
-    products: testProd,
+    products: store.products,
+    docID:docID,
   });
 };
 
@@ -289,6 +291,33 @@ const deleteImageFromCloud = (ref) => {
     return false;
   }
 };
+module.exports.showCustomer=(req,res)=>{
+res.render("admin/customer")
+
+}
+module.exports.changeStatus=async (req,res)=>{
+  let docID = req.session.store.id;
+  const store = await getStore(docID);
+  let {products}=store;
+  products.forEach(product=>{
+    if(product.productId==req.body.productId){
+      product.productStatus=(req.body.status==="Active"?"Active":"Draft");
+      return;
+    }
+  })
+  console.log(products)
+  store.products=products;
+  db.collection("users").doc(docID).set(store)
+  .then(() => {
+  console.log("Document successfully written!");
+  res.send("update successful");
+  })
+  .catch((error) => {
+  console.error("Error writing document: ", error);
+  });
+
+
+ }
 
 const getStore = async (docID) => {
   // const docID = "HwvSNn14iO9nmgD8KYNK";
