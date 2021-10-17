@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/store/allproducts_import.ejs') %>
+  <%- include('../../partials/store/allproducts_import.ejs') %>
   <body>
-  <%- include('../partials/store/products_nav.ejs') %>
-  <%- include('../partials/store/cart.ejs') %>
+  <%- include('../../partials/store/products_nav.ejs') %>
+  <%- include('../../partials/store/cart.ejs') %>
  
 
 
@@ -36,7 +36,10 @@
            
                 <div class="slider-btn" style="padding-top: 10px;">
                 <a href="/store/shop/<%=products[i].sid%>/product/<%=products[i].productId%>" class="btn  look-btn">Quick Look</a>
-                <a href="#" class="btn  buy-btn" style="border: none;">Buy Now</a>
+                <form action="/orders/checkout/<%=products[i].sid%>/<%=products[i].productId%>" method="post">
+                  <input type="number" name="quantity" id="quantity" value="1" hidden>
+                  <button type="submit" class="btn  buy-btn" style="border: none;">Buy Now</button>
+                </form>
                 </div>          
              
             </div>
@@ -111,9 +114,14 @@
                
                 <span class="buttons allbtn d-flex justify-content-center"> 
                   <!-- <button class="btn btn-buy mr-1 tooltip-btn" data-toggle="tooltip" data-placement="top" title="Buy"> <i class="fas fa-shopping-bag"></i></button> -->
-                   <button class="btn btn-cart tooltip-btn buy-btn"  data-toggle="tooltip" data-placement="top" id="<%=products[i].productId%>" title="Buy now"><i class="fas fa-shopping-cart"></i></button>
+                  <form action="/orders/checkout/<%=products[i].sid%>/<%=products[i].productId%>" method="post">
+                    <input type="number" name="quantity" id="quantity" value="1" hidden>
+                    <button type="submit" class="btn btn-cart tooltip-btn buy-btn"  data-toggle="tooltip" data-placement="top" id="<%=products[i].productId%>" title="Buy now"><i class="fas fa-shopping-cart"></i></button>
+                </form>
                    <a href="/store/shop/<%=products[rand].sid%>/product/<%=products[rand].productId%>">
-                   <button class="btn btn-more tooltip-btn" data-toggle="tooltip" data-placement="top" title="More"><i class="fas fa-info-circle"></i></button></span>
+                    
+                <button  class="btn btn-more tooltip-btn" data-toggle="tooltip" data-placement="top" title="More"><i class="fas fa-info-circle"></i></button>
+                   </span>
                    </a>
               </div>
              
@@ -136,10 +144,10 @@
     </div>
 
 
-    <%- include('../partials/store/shop_footer.ejs') %>
+    <%- include('../../partials/store/shop_footer.ejs') %>
   
   </body>
-  <%- include('../partials/store/allproducts_script.ejs') %>
+  <%- include('../../partials/store/allproducts_script.ejs') %>
   <script src="/javascripts/store/sort-prod.js"></script>
   <!-- <script src="/javascripts/store/pagination.js"></script> -->
  

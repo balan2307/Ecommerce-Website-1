@@ -61,7 +61,13 @@ module.exports.StoreFront=async (req, res) => {
     
     
 
-  res.render("store/storefront.ejs",{user,products:testProd,id,st_name,role});
+  res.render("store/dropshipper/storefront.ejs", {
+    user,
+    products: testProd,
+    id,
+    st_name,
+    role,
+  });
 }
 
 //Gloabal store for wholeseller's product
@@ -102,7 +108,7 @@ module.exports.wholeProd=async(req,res)=>
     
   )
   testProd=Array.from({length:4},()=>allproducts).flat();
-  res.render("store/allproducts.ejs",{products:testProd,st_name,role,id});
+  res.render("store/dropshipper/allproducts.ejs",{products:testProd,st_name,role,id});
 
 }
 
@@ -136,7 +142,7 @@ module.exports.ProductPage=async(req,res)=>
 
     if(productFound)
     {
-      res.render("store/product.ejs",{product:productFound,st_name,id:sid,settings,role});
+      res.render("store/dropshipper/product.ejs",{product:productFound,st_name,id:sid,settings,role});
   
     }
     else
@@ -144,7 +150,7 @@ module.exports.ProductPage=async(req,res)=>
       // reject(new Error("No such document!"));
       console.log("Product not found")
       req.flash("ferror", "No such product exists");
-      res.redirect('/store/shop/'+sid)
+      res.redirect("/store/shop/dropshipper/" + sid);
     }
   
    
@@ -156,7 +162,7 @@ module.exports.ProductPage=async(req,res)=>
       let message="No";
       // res.render('error.ejs',{message})
       req.flash("ferror", "No such page exists");
-      res.redirect('/store/shop/sid')
+      res.redirect("/store/shop/dropshipper/sid");
     }
     
    
@@ -290,7 +296,13 @@ module.exports.renderAllproducts=async(req,res)=>
 
      testProd=Array.from({length:4},()=>products).flat();
 
-  res.render("store/allproducts.ejs",{user,products:testProd,id:sid,st_name,role});
+  res.render("store/dropshipper/allproducts.ejs", {
+    user,
+    products: testProd,
+    id: sid,
+    st_name,
+    role,
+  });
  
 
 }

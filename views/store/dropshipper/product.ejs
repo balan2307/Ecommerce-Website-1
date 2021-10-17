@@ -14,11 +14,11 @@
     />
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <%- include('../partials/store/allproducts_import.ejs') %>
+    <%- include('../../partials/store/allproducts_import.ejs') %>
   </head>
   <body>
-    <%- include('../partials/store/products_nav.ejs') %>
-    <%- include('../partials/store/cart.ejs') %>
+    <%- include('../../partials/store/products_nav.ejs') %>
+    <%- include('../../partials/store/cart.ejs') %>
     <div class="container-fluid">
     <div class=" product-container d-flex justify-content-center">
     <div class="card-wrapper d-flex justify-content-center">
@@ -66,9 +66,13 @@
                 </div>
                 <% }%>
                 <div class="mt-4">
-                  <button type="button" class="btn buy-btn" id="btn-buy" >Buy now
+                  <form action="/orders/checkout/<%=id%>/<%=product.productId%>" method="post">
+                  <input type="number" name="quantity" id="quantity" value="1" hidden>
+                  <button type="submit" class="btn buy-btn" id="btn-buy" >Buy now
                     <span class="d-none d-md-inline"><i class="fas fa-shopping-bag"></i></span>
                   </button>
+                </form>
+                  
                 </div>
               </div>
               <!-- <div class="d-flex align-items-center">
@@ -124,11 +128,11 @@
       </div>
     </div>
     </div>
-    <%- include('../partials/store/shop_footer.ejs') %>
+    <%- include('../../partials/store/shop_footer.ejs') %>
     </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script> -->
 
-    <%- include('../partials/store/allproducts_script.ejs') %>
+    <%- include('../../partials/store/allproducts_script.ejs') %>
 
   
   </body>
