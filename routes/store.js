@@ -30,6 +30,8 @@ router.get("/shop/:sid/product/:pid",userController.ProductPage)
 // Get all products of a Drop-shipper
 router.get("/shop/:sid/allproducts",userController.renderAllproducts)
 
+router.post("/dropshipper/add-product",userController.Updatedropshipper)
+
 // router.get("/shop/:id/addViews",()=>
 // {
 //     console.log("Adding views");

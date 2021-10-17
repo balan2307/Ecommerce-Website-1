@@ -35,8 +35,8 @@
               
            
                 <div class="slider-btn" style="padding-top: 10px;">
-                <a href="/store/shop/<%=products[i].sid%>/product/<%=products[i].productId%>" class="btn  look-btn">Quick Look</a>
-                <a href="#" class="btn  buy-btn" style="border: none;">Buy Now</a>
+                <!-- <a href="/store/shop/<%=products[i].sid%>/product/<%=products[i].productId%>" class="btn  look-btn">Quick Look</a> -->
+                <a href="/store/shop/<%=products[i].sid%>/product/<%=products[i].productId%>"   class="btn  buy-btn" style="border: none;" >Buy Now</a>
                 </div>          
              
             </div>
@@ -111,10 +111,13 @@
                
                 <span class="buttons allbtn d-flex justify-content-center"> 
                   <!-- <button class="btn btn-buy mr-1 tooltip-btn" data-toggle="tooltip" data-placement="top" title="Buy"> <i class="fas fa-shopping-bag"></i></button> -->
-                   <button class="btn btn-cart tooltip-btn buy-btn"  data-toggle="tooltip" data-placement="top" id="<%=products[i].productId%>" title="Buy now"><i class="fas fa-shopping-cart"></i></button>
-                   <a href="/store/shop/<%=products[rand].sid%>/product/<%=products[rand].productId%>">
-                   <button class="btn btn-more tooltip-btn" data-toggle="tooltip" data-placement="top" title="More"><i class="fas fa-info-circle"></i></button></span>
-                   </a>
+                  <a href="/store/shop/<%=products[i].sid%>/product/<%=products[i].productId%>">
+                    <button class="btn btn-cart tooltip-btn buy-btn" qty="<%=products[i].qty%>"   data-toggle="tooltip" data-placement="top" id="<%=products[i].productId%>" title="Buy now"><i class="fas fa-shopping-cart"></i></button>
+                  </a>
+                  
+                   <!-- <a href="/store/shop/<%=products[rand].sid%>/product/<%=products[rand].productId%>">
+                   <button class="btn btn-more tooltip-btn"  data-toggle="tooltip" data-placement="top" title="More"><i class="fas fa-info-circle"></i></button></span>
+                   </a> -->
               </div>
              
             </div>
@@ -141,6 +144,8 @@
   </body>
   <%- include('../partials/store/allproducts_script.ejs') %>
   <script src="/javascripts/store/sort-prod.js"></script>
+  <script src="/javascripts/store/buy-prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- <script src="/javascripts/store/pagination.js"></script> -->
  
   <!-- <script src="/controllers/userController.js"></script> -->

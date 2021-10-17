@@ -1,6 +1,7 @@
 const firebase=require('../config/firebaseInit');
 const db=firebase.db;
 const fetch = require('node-fetch');
+const { drop } = require('lodash');
 
 module.exports.Index = (req, res) => {
   res.send("respond with a resource"); //test response  
@@ -78,6 +79,7 @@ module.exports.wholeProd=async(req,res)=>
   let sid="HaZYZQ9fittGwKsZpoOR";
   let role="whole-seller";
   let id="";
+  let setting='';
 
   const store =await  db
   .collection("users")
@@ -86,11 +88,14 @@ module.exports.wholeProd=async(req,res)=>
   .then((docRef) => {
     docRef.docs.forEach(doc=>{
       data=doc.data()
+      console.log("Settings",data.settings);
       console.log("docu id",doc.id)
+      setting=data.settings;
       products=data.products;
       products.forEach((prod)=>
       {
         prod.sid=doc.id;
+        prod.qty=setting.qty;
       })
       // console.log(products);
 
@@ -136,7 +141,7 @@ module.exports.ProductPage=async(req,res)=>
 
     if(productFound)
     {
-      res.render("store/product.ejs",{product:productFound,st_name,id:sid,settings,role});
+      res.render("store/product.ejs",{product:productFound,st_name,id:sid,pid,settings,role});
   
     }
     else
@@ -294,3 +299,111 @@ module.exports.renderAllproducts=async(req,res)=>
  
 
 }
+
+
+
+
+module.exports.Updatedropshipper=async(req,res)=>
+{
+  
+  let {sid,pid,qty}=req.body;
+  let docID = req.session.store.id;
+  let checkifPresent;
+  let productFound;
+  const dropShipper = await getStore(docID);
+  const {products:dropshipperProd}=dropShipper;
+
+    
+  const wholeseller=await getStore(sid);
+  const {products:wholesellerProd}=wholeseller;
+
+  checkifPresent=dropshipperProd.find((product) => product.productId === pid);
+  
+  // console.log("Bought",productFound)
+  console.log("Drop shipper",user.id)
+  if(!checkifPresent)
+  {
+  productFound=wholesellerProd.find((product) => product.productId === pid);
+  productFound.productInventory=qty;
+  dropshipperProd.push(productFound);
+  
+  await db.collection('users').doc(docID).update({products:dropshipperProd})
+  console.log("New",dropshipperProd);
+  console.log("Bought")
+  
+  }
+  else
+  {
+    // productFound=dropshipperProd.find((product) => product.productId === pid);
+    // productFound.productInventory+=qty;
+
+    dropshipperProd.forEach(product=>{
+      if(product.productId==pid){
+
+        product.productInventory=parseInt(product.productInventory)+parseInt(qty);
+      }
+    })
+
+    // dropshipperProd.remove((product) => product.productId === pid);
+    // dropshipperProd.push(productFound);
+    await db.collection('users').doc(docID).update({products:dropshipperProd})
+    console.log("Stock");
+
+
+    
+
+
+
+  }
+
+  wholesellerProd.forEach(product=>{
+    if(product.productId==pid){
+
+      product.productInventory=parseInt(product.productInventory)-parseInt(qty);
+    }
+  })
+  await db.collection('users').doc(sid).update({products:wholesellerProd})
+  console.log("Wholeseller updated");
+
+
+
+
+
+
+
+
+
+  // console.log("Drop",dropshipperProd)
+  // console.log("Bought from",wholesellerProd)
+  
+ 
+  res.send("Got it")
+}
+
+
+const getStore = async (docID) => {
+  // const docID = "HwvSNn14iO9nmgD8KYNK";
+  // const docID = req.session.store.id;
+  return new Promise((resolve, reject) => {
+    db.collection("users")
+      .doc(docID)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          // console.log("Document data:", doc.data());
+          const store = doc.data();
+          resolve(store);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+          reject(new Error("No such document!"));
+        }
+      })
+      .catch(function (error) {
+        console.log("Error getting document:", error);
+        reject(new Error(error));
+
+      });
+  })
+  
+};
