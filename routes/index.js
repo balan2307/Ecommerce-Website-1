@@ -2,6 +2,7 @@ const express = require('express');
 const usersRouter = require("./users");
 const adminRouter = require('./admin');
 const storeRouter = require('./store');
+const isLoggedIn = require("../middlewares/user_auth");
 const landingRouter = require("./landingPage");
 
 // const firebase = require('../config/firebaseInit');
@@ -10,10 +11,26 @@ const db = require('../config/firebaseInit');
 
 const InitRoutes = (app) => {
   /* GET home page. */
+  app.get("/",isLoggedIn, function (req, res, next) {
+ 
+    
+    
+ 
+    res.render("index", { title: "Express" });
+  });
+  
+  app.get("/test", function (req, res, next) {
+    res.render("test");
+  });
+
+
+
+
   app.use("/",landingRouter);
   app.use("/users", usersRouter);
   app.use("/admin", adminRouter);
   app.use("/store",storeRouter);
+  
 
   console.log("Routes Initialized")
 

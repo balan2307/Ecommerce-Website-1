@@ -94,6 +94,7 @@ body {
   width: 80%;
   margin-top: 20px;
   background-color: #fd4d96;
+  border: none;
 
   color: white;
 }
@@ -129,4 +130,13 @@ body {
 .create-account,
 .form-label {
   color: #3677ec;
+}
+
+.form-select
+{
+
+  padding: 0.2em;
+  height: 2em;
+  padding-left: 0.5em;
+
 }

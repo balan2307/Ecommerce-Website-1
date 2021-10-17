@@ -35,9 +35,12 @@ const uploadFiles = upload.single("product-image");
 module.exports.ViewProducts = async (req, res) => {
   // console.log(req.session);
   // const docID = "HwvSNn14iO9nmgD8KYNK";
+  // const docID="RhFCCBIUACGgKWafIeJE";
   const docID = req.session.store.id;
+  // const docID="y9BmOPQtcrhdb9mfkZHa";
 
   const store = await getStore(docID);
+  const testProd=Array.from({length:25},()=>store.products).flat();
 
   
 
