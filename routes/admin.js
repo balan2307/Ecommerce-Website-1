@@ -7,7 +7,7 @@ const isLoggedIn = require("../middlewares/user_auth");
 
 /* GET users listing. */
 router.get("/products",isLoggedIn, adminController.ViewProducts);
-router.get("/product/:productId", isLoggedIn, adminController.SingleProduct);
+router.get("/product/:productId", isLoggedIn, adminController.SingleProduct);     
 router.post(
   "/addProduct",
   isLoggedIn,
@@ -50,7 +50,10 @@ router.get('/test',(req,res)=>
 {
     res.send(req.session);
 })
-router.get("/customers",adminController.showCustomer)
+router.get("/customers",isLoggedIn,adminController.showCustomer)
+router.get("/showCustomer/:ind",isLoggedIn,adminController.showCustomerDetails)
+
+
 // router
 //   .route("/login")
 //   .get((req, res) => res.render("admin/login"))
