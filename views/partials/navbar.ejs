@@ -20,6 +20,25 @@
       <input type="text" placeholder="Search..." />
       <span class="tooltip">Search</span>
     </li>
+
+    <% if(user.role=="drop-shipper"){ %>
+    <li>
+      <a href="<%=user.store_url%>">
+        <i class='bx bxs-store'></i>
+        <span class="links_name">My Store</span>
+      </a>
+      <span class="tooltip">My Store</span>
+    </li>
+    <% } else if(user.role=="whole-seller"){ %>
+      <li>
+        <a href="/store/sell/wholesellproducts">
+          <i class='bx bxs-store'></i>
+          <span class="links_name">Global Store</span>
+        </a>
+        <span class="tooltip">Global Store</span>
+      </li>
+
+      <%}%>
     <li>
       <a href="#">
         <i class="bx bx-grid-alt"></i>
@@ -34,13 +53,13 @@
       </a>
       <span class="tooltip">Customers</span>
     </li>
-    <li>
+    <!-- <li>
       <a href="#">
         <i class="bx bx-chat"></i>
         <span class="links_name">Email Marketing</span>
       </a>
       <span class="tooltip">Email Marketing</span>
-    </li>
+    </li> -->
     <!-- <li>
        <a href="#">
          <i class='bx bx-pie-chart-alt-2' ></i>
@@ -69,11 +88,23 @@
        </a>
        <span class="tooltip">Saved</span>
      </li> -->
+     
     <li>
-      <a href="#">
+     <% if(user && user.role=="whole-seller") { %>
+      <a href="/admin/setting">
         <i class="bx bx-cog"></i>
         <span class="links_name">Settings</span>
       </a>
+      <% } else { %>
+        <a href="#">
+          <i class="bx bx-cog"></i>
+          <span class="links_name">Settings</span>
+        </a>
+
+      <% } %>
+
+
+    
       <span class="tooltip">Settings</span>
     </li>
     <li class="profile">

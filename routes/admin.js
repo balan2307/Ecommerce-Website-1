@@ -4,6 +4,7 @@ const router = express.Router();
 const authController=require("../controllers/authController")
 const adminController = require("../controllers/productsController");
 const isLoggedIn = require("../middlewares/user_auth");
+const { route } = require("./users");
 
 /* GET users listing. */
 router.get("/products",isLoggedIn, adminController.ViewProducts);
@@ -46,6 +47,19 @@ router.get('/test',(req,res)=>
 {
     res.send(req.session);
 })
+
+router.get('/home',(req,res)=>
+{
+    res.send("testing home");
+})
+
+
+//Setting page for wholeseller
+router.route('/setting')
+.get(authController.renderForm)
+.post(authController.postForm);
+
+
 // router
 //   .route("/login")
 //   .get((req, res) => res.render("admin/login"))

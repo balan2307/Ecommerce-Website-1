@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    
+    <%- include('../partials/store/storefront_import.ejs') %>
+    
+
+    <!-- <script src="https://use.fontawesome.com/935c3fa540.js"></script> -->
+  </head>
+
+  <body>
+    <header>
+      <%- include('../partials/store/products_nav.ejs') %>
+    
+      <%- include('../partials/store/cart.ejs') %>
+   
+    </header>
+    <%- include('../partials/flash') %>
+
+    <div class="container-fluid-xxl main-container" >
+    
+      <div
+        id="carouselExampleFade"
+        class="carousel slide carousel-fade"
+        data-bs-ride="carousel"
+      >
+      
+        <div class="carousel-inner">
+          
+          <% for(let i=0;i<=2;i++) { %> <% let rand=Math.floor(Math.random() *
+          (products.length));%>
+        
+          
+       
+         
+          <div class="carousel-item">
+            <!-- <div class="carousel-caption d-none d-sm-block">
+              <h5 style="margin-top: 50px;">Most Bought</h5>
+              </div> -->
+         
+            
+           
+            <a href="/store/shop/<%=id%>/product/<%=products[i].productId%>">
+              <img
+                src="<%=products[i].productImage%>"
+                class="d-block w-100 img-fluid carousel-images"
+                alt="..."
+              />
+            </a>
+        
+          </div>
+          <% } %>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleFade"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleFade"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div class="container-fluid">
+        <h1 class="content-header">In the Spotlight</h1>
+        <div class="row row-1">
+          <% for(let i=0;i<=3;i++) { %> <% let rand=Math.floor(Math.random() *
+          (products.length)) %>
+        
+          <div class="col-6 mb-3 overlay col-md-3 d-flex flex-column justify-content-center align-items-center ">
+           
+            <div class="hover-img">
+            <a href="/store/shop/<%=id%>/product/<%=products[rand].productId%>"
+              ><img
+                class="img-fluid images"
+                src="<%=products[rand].productImage %>"
+                alt=""
+              />
+            </a>
+           
+            </div>
+            <div class="hover-price">
+              <span > <h2>&#8377 <%=products[rand].productPrice%></h2></span>
+              </div>
+           
+           
+          </div>
+        
+
+        
+          <% } %>
+        </div>
+
+        <div class="row row-2 mb-3">
+          <div class="col-sm" id="shop-det1">
+            Stand out from the crowd with our range of practical and stylish
+            menswear. The range includes clothes for a variety of occasions,
+            including beachwear, snowwear and streetwear. Why not browse through
+            our unique menswear, you are sure to find just what you need.
+            Blending the hottest street influences with the latest in clothing
+            technology, we at Protest bring you a unique fusion of high
+            performance and high style. Our line of women's sportswear and
+            accessories has you covered whatever your spor
+          </div>
+        </div>
+
+        <div
+          class="row row-3 mb-3"
+          style="display: flex; justify-content: center"
+        >
+        <h1 class="content-header">In Focus</h1>
+          <div class="col-10 overlay mb-2 inner-row">
+            <% let rand=Math.floor(Math.random() * (products.length)) %>
+            <div class="hover-img">
+            <a  href="/store/shop/<%=id%>/product/<%=products[rand].productId%>">
+              <img
+                class="img-fluid image-huge"
+                src="<%=products[rand].productImage%>"
+            /></a>
+            </div>
+            <div class="hover-price">
+              <span > <h2>&#8377 <%=products[rand].productPrice%></h2></span>
+              </div>
+          </div>
+          <div class="col-md-2  -flex justify-content-center inner2-row">
+            <div class="row">
+              <% for(let i=0;i<=1;i++) { %> 
+                <% let rand=Math.floor(Math.random()
+              * (products.length)) %>
+              <div class="col-6  overlay col-md-12 mb-2 d-flex justify-content-center">
+                <div class="hover-img">
+                <a
+                  href="/store/shop/<%=id%>/product/<%=products[rand].productId%>"
+                >
+                  <img
+                    class="img-fluid images-nest"
+                    src="<%=products[rand].productImage%>"
+                    alt=""
+                /></a>
+                </div>
+                <div class="hover-price">
+                  <span > <h2>&#8377 <%=products[rand].productPrice%></h2></span>
+                  </div>
+               
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row row-4 mt-3 mb-3">
+          <div class="col-sm-12" id="shop-det2">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Accusantium nisi ratione velit nemo cum quasi repellendus dolores
+          </div>
+        </div>
+      </div>
+
+      <%- include('../partials/store/shop_footer.ejs') %>
+      <%- include('../partials/store/storefront_script.ejs') %>
+    </div>
+  
+  </body>
+  <script src="/javascripts/store/store-navbar.js"></script>
+</html>

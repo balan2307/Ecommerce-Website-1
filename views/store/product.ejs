@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Product Card/Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/stylesheets/shop/product.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <%- include('../partials/store/allproducts_import.ejs') %>
+  </head>
+  <body>
+    <%- include('../partials/store/products_nav.ejs') %>
+    <%- include('../partials/store/cart.ejs') %>
+    <div class="container-fluid">
+    <div class=" product-container d-flex justify-content-center">
+    <div class="card-wrapper d-flex justify-content-center">
+      <div class="product card">
+        <div class="row" style=" padding: 0; margin: 0;">
+          <div class="col-md-6 col-sm-12">
+            <div class="product-imgs">
+              <div class="img-display">
+                <div class="img-showcase">
+                  <img class="product-image" src="<%=product.productImage%>" alt="shoe image" />
+                 
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="product-content d-flex flex-column justify-content-between">
+              <h2 class="product-title"><%=product.productName%></h2>
+
+
+              <div class="product-price">
+                <p class="new-price"><span>&#8377 <%=product.productPrice%></span></p>
+              </div>
+
+              <div class="product-detail">
+                
+                <!-- <p><%=product.productDescription%>
+                </p> -->
+              </div>
+
+              <div class="purchase-info d-flex justify-content-between mt-5">
+              
+                <div>
+                  <% if(role=="whole-seller") {%>
+              <label for="qty" class="qty-label">Quantity:</label>
+              <input type="number" min="<%= settings.qty%>" value="<%= settings.qty%>" id="qty"  />
+              
+              <div class="mt-1">
+                <label for="time" class="time-label">Select duration</label>
+                <select  name="time" class="form-select " id="time" aria-label="Default select example">
+                  <option selected value="2 days" class="time-sel">2 days</option>
+                  <option  value="1 month" class="time-sel">1 month</option>
+                  <option  value="3 month" class="time-sel">3 month</option>
+                </select>
+                </div>
+                <% }%>
+                <div class="mt-4">
+                  <button type="button" class="btn buy-btn" id="btn-buy" >Buy now
+                    <span class="d-none d-md-inline"><i class="fas fa-shopping-bag"></i></span>
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="d-flex align-items-center">
+                <button type="button" class="btn" id="btn-addtocart" >Add to cart
+                  <span class="d-none d-md-inline"><i class="fas fa-shopping-cart"></i></span>
+                </button>
+              </div> -->
+           
+                
+             
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row description">
+          
+          <% if(role=="whole-seller") {%>
+          <div>
+            <table class="table infracost-table">
+              <thead>
+                <tr>
+                 <h2><th colspan="4" class="table-head" style="border:1px solid #ececed">Infrastructure Cost</th></h2>
+                </tr> 
+              </thead>
+              <tbody>
+                <tr style="font-weight: 600;">
+                  <td>Duration</td>
+                  <td>2 Days</td>
+                  <td>1 Month</td>
+                  <td>3 Month</td>
+                </tr>
+                <tr style="font-weight: 600;">
+                  <td>Cost</td>
+                  <td>&#8377 <%= settings.twoday%></td>
+                  <td>&#8377 <%= settings.onemonth%></td>
+                  <td>&#8377 <%= settings.threemonth%></td>
+                </tr> 
+                
+              </tbody>
+            </table>
+           
+            
+          </div>
+          <% } %>
+
+          <div class="col-12 ">
+            <h2 class="descp-heading" style="font-size: 1.7rem;">Description</h2>
+            <p class=""><%=product.productDescription%></p>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+    </div>
+    <%- include('../partials/store/shop_footer.ejs') %>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script> -->
+
+    <%- include('../partials/store/allproducts_script.ejs') %>
+
+  
+  </body>
+</html>

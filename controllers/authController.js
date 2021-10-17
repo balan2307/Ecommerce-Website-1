@@ -6,7 +6,9 @@ const bcrypt = require("bcrypt");
 
 
 module.exports.register = async (req, res) => {
-    const { email, password, name, store_name } = req.body;
+ 
+    const { email, password, name, store_name ,role} = req.body;
+    
     const previousUser = await db
       .collection("users")
       .where("email", "==", email)
@@ -27,19 +29,41 @@ module.exports.register = async (req, res) => {
           customer: [],
           orders: [],
           products: [],
-          store_url: "",
+          
+          role:role
         };
+        if(role=="whole-seller")
+        {
+          let settings={
+            qty:1,
+            twoday:"",
+            onemonth:"",
+            twomonth:""
+          }
+          store.settings=settings;
+
+        }
+       
   
         const user = await db.collection("users").add(store);
+        if(role=="drop-shipper")
+        {
+        let store_url="/store/shop/"+user.id+"/"
+       
+        await db.collection('users').doc(user.id).update({store_url})
+      }
   
         store.id = user.id;
         req.session.store = store;
         req.flash("success", "You have succesfully Registered!");
+        
         res.redirect("/");
+        
       }
     } catch (error) {
       console.log(`Error while registering user: ${error}`);
       req.flash("ferror", "Some error occured");
+   
       res.redirect("/admin/register");
     }
   };
@@ -71,3 +95,39 @@ module.exports.register = async (req, res) => {
     req.session.destroy();
     res.redirect("/admin/login");
   };
+
+
+  //Render a setting form for wholeseller
+  module.exports.renderForm=async(req,res)=>
+  {
+  // console.log("settings");
+  let setting;
+  let user=req.session.store.id;
+  const store = await db
+  .collection("users")
+  .doc(user)
+  .get()
+  .then((docRef) => {
+    data=docRef.data();
+    setting=data.settings
+    
+  })
+  .catch((error) => {});
+  // console.log("data",setting)
+ 
+ 
+  res.render('admin/wholeseller-settings.ejs',{setting})
+  }
+
+  module.exports.postForm=async(req,res)=>
+  {
+   let settings=req.body.setting;
+  //  console.log("currenllty logged in",req.session.store.name)
+   let user=req.session.store.id;
+   await db.collection('users').doc(user).update({settings})
+   req.flash("success", "Settings saved successfully!");
+   res.redirect('/admin/setting');
+  
+  }
+
+
