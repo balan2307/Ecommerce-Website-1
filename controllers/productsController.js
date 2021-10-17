@@ -50,6 +50,26 @@ module.exports.ViewProducts = async (req, res) => {
     docID:docID,
   });
 };
+module.exports.showCustomer=async (req,res)=>{
+  const docID = req.session.store.id;
+
+  const store = await getStore(docID);
+  console.log("Customers::",store.customer)
+  res.render("admin/customer",{
+    customer:store.customer,
+  })
+  
+  }
+  module.exports.showCustomerDetails=async (req,res)=>{
+    const docID = req.session.store.id;
+    let index=parseInt(req.params.ind);
+    const store = await getStore(docID);
+   
+    console.log("Customers::",store.customer[index])
+    res.send(store.customer[index]);
+    
+    }
+
 
 module.exports.SingleProduct = async (req, res) => {
   // const docID = "HwvSNn14iO9nmgD8KYNK";
@@ -291,10 +311,6 @@ const deleteImageFromCloud = (ref) => {
     return false;
   }
 };
-module.exports.showCustomer=(req,res)=>{
-res.render("admin/customer")
-
-}
 module.exports.changeStatus=async (req,res)=>{
   let docID = req.session.store.id;
   const store = await getStore(docID);
