@@ -121,6 +121,7 @@ module.exports.EditProducts = async (req, res) => {
     }
     return product.productId !== productId;
   });
+
   // console.log(product);
   console.log("productImageUrl", productImageUrl);
   // res.send(product)

@@ -69,6 +69,13 @@ module.exports.StoreFront=async (req, res) => {
   }
   else
   {
+    res.render("store/dropshipper/storefront.ejs", {
+      user,
+      products: testProd,
+      id,
+      st_name,
+      role,
+    });
     
   }
 }
@@ -78,7 +85,7 @@ module.exports.wholeProd=async(req,res)=>
 {
   // console.log("fetchiung wholesellers")
 
-
+  let user_role = req.session.store;
   let products;
   let st_name="Shoppers-Unite";
   let data;
@@ -115,13 +122,22 @@ module.exports.wholeProd=async(req,res)=>
     
   )
   testProd=Array.from({length:4},()=>allproducts).flat();
-  res.render("store/wholeseller/allproducts.ejs",{products:testProd,st_name,role,id});
+  if(user_role)
+  {
+    res.render("store/wholeseller/allproducts.ejs",{products:testProd,st_name,role,id});
+  }
+  else
+  {
+    res.render("store/dropshipper/allproducts.ejs",{products:testProd,st_name,role,id});
+  }
+  
 
 }
 
 //Individual product page
 module.exports.ProductPage=async(req,res)=>
 {
+  let user_role = req.session.store;
   const {sid,pid}=req.params;
   let productFound;
   let st_name;
@@ -148,8 +164,19 @@ module.exports.ProductPage=async(req,res)=>
 
     if(productFound)
     {
+      if(user_role)
+      {
+        res.render("store/wholeseller/product.ejs",{product:productFound,st_name,id:sid,pid,settings,role});
+
+      }
+      else
+      {
+        res.render("store/dropshipper/product.ejs",{product:productFound,st_name,id:sid,settings,role});
+
+      }
+
       // if(user.role)
-      res.render("store/wholeseller/product.ejs",{product:productFound,st_name,id:sid,pid,settings,role});
+    
   
     }
     else
@@ -157,7 +184,7 @@ module.exports.ProductPage=async(req,res)=>
       // reject(new Error("No such document!"));
       console.log("Product not found")
       req.flash("ferror", "No such product exists");
-      res.redirect('/store/shop/'+sid)
+      res.redirect("/store/shop/dropshipper/" + sid);
     }
   
    
@@ -169,7 +196,7 @@ module.exports.ProductPage=async(req,res)=>
       let message="No";
       // res.render('error.ejs',{message})
       req.flash("ferror", "No such page exists");
-      res.redirect('/store/shop/sid')
+      res.redirect("/store/shop/dropshipper/sid");
     }
     
    
@@ -265,6 +292,7 @@ module.exports.renderAllproducts=async(req,res)=>
 {
   // console.log("Route hit");
   const {sid}=req.params;
+  let user_role = req.session.store;
   let productFound;
   let user={};
   let products;
@@ -303,7 +331,24 @@ module.exports.renderAllproducts=async(req,res)=>
 
      testProd=Array.from({length:4},()=>products).flat();
 
-  res.render("store/wholeseller/allproducts.ejs",{user,products:testProd,id:sid,st_name,role});
+     if(user_role)
+     {
+      res.render("store/wholeseller/allproducts.ejs",{user,products:testProd,id:sid,st_name,role});
+
+     }
+ 
+
+     else{
+      res.render("store/dropshipper/allproducts.ejs", {
+        user,
+        products: testProd,
+        id: sid,
+        st_name,
+        role,
+      });
+
+     }
+
  
 
 }

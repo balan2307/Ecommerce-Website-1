@@ -69,7 +69,9 @@
               
                 <% if((role=="whole-seller" && (product.productInventory>settings.qty))||role=="drop-shipper"){ %>
                 <div class="mt-4">
-                  <button type="button" class="btn buy-btn" id="btn-buy"  onclick="buyProd(`<%=id%>` ,`<%=pid%>`)">Buy now
+                  <form action="/orders/checkout/<%=id%>/<%=product.productId%>" method="post">
+                  <input type="number" name="quantity" id="quantity" value="1" hidden>
+                  <button type="submit" class="btn buy-btn" id="btn-buy" >Buy now
                     <span class="d-none d-md-inline"><i class="fas fa-shopping-bag"></i></span>
                   </button>
                 </form>

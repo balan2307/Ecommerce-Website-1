@@ -35,8 +35,11 @@
               
            
                 <div class="slider-btn" style="padding-top: 10px;">
-                <!-- <a href="/store/shop/<%=products[i].sid%>/product/<%=products[i].productId%>" class="btn  look-btn">Quick Look</a> -->
-                <a href="/store/shop/<%=products[i].sid%>/product/<%=products[i].productId%>"   class="btn  buy-btn" style="border: none;" >Buy Now</a>
+                <a href="/store/shop/<%=products[i].sid%>/product/<%=products[i].productId%>" class="btn  look-btn">Quick Look</a>
+                <form action="/orders/checkout/<%=products[i].sid%>/<%=products[i].productId%>" method="post">
+                  <input type="number" name="quantity" id="quantity" value="1" hidden>
+                  <button type="submit" class="btn  buy-btn" style="border: none;">Buy Now</button>
+                </form>
                 </div>          
              
             </div>
