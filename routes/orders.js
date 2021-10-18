@@ -48,5 +48,15 @@ router.get("/failure/:orderId", function (req, res) {
 
 router.post("/checkout/:storeId/:productId", ordersController.CreateCheckout);
 router.post("/paymentDone", ordersController.OrderWebhook);
+// testing failure and success pages
+router.get("/failure", function (req, res) {
+  console.log("failure");
+  res.render("failure.ejs");
+});
+
+router.get("/success", function (req, res) {
+  console.log("success");
+  res.render("success.ejs");
+});
 
 module.exports = router;
