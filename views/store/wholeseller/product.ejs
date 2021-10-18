@@ -66,13 +66,14 @@
                 </select>
                 </div>
                 <% }%>
-                <% console.log("Checking",product.productInventory ,settings.qty)  %>
-                <% if(role=="whole-seller" && (product.productInventory>settings.qty)){ %>
+              
+                <% if((role=="whole-seller" && (product.productInventory>settings.qty))||role=="drop-shipper"){ %>
                 <div class="mt-4">
                   <button type="button" class="btn buy-btn" id="btn-buy"  onclick="buyProd(`<%=id%>` ,`<%=pid%>`)">Buy now
                     <span class="d-none d-md-inline"><i class="fas fa-shopping-bag"></i></span>
                   </button>
                 </div>
+                
                 <% } else {%>
                   <h1>Out of Stock</h1>
                   <%} %>

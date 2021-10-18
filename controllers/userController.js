@@ -32,6 +32,7 @@ module.exports.AddCollection=async(req,res)=>
 //Store front for Drop-shipper
 module.exports.StoreFront=async (req, res) => {
   const { id } = req.params;
+  let user_role = req.session.store;
   console.log("now " + id);
   console.log("print data");
   let user={};
@@ -61,8 +62,15 @@ module.exports.StoreFront=async (req, res) => {
     }
     
     
-
+   
+  if(user_role)
+  {
   res.render("store/wholeseller/storefront.ejs",{user,products:testProd,id,st_name,role});
+  }
+  else
+  {
+    
+  }
 }
 
 //Gloabal store for wholeseller's product
