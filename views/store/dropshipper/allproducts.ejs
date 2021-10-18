@@ -114,15 +114,6 @@
                
                 <span class="buttons allbtn d-flex justify-content-center"> 
                   <!-- <button class="btn btn-buy mr-1 tooltip-btn" data-toggle="tooltip" data-placement="top" title="Buy"> <i class="fas fa-shopping-bag"></i></button> -->
-<<<<<<< HEAD:views/store/wholeseller/allproducts.ejs
-                  <a href="/store/shop/<%=products[i].sid%>/product/<%=products[i].productId%>">
-                    <button class="btn btn-cart tooltip-btn buy-btn" qty="<%=products[i].qty%>"   data-toggle="tooltip" data-placement="top" id="<%=products[i].productId%>" title="Buy now"><i class="fas fa-shopping-cart"></i></button>
-                  </a>
-                  
-                   <!-- <a href="/store/shop/<%=products[rand].sid%>/product/<%=products[rand].productId%>">
-                   <button class="btn btn-more tooltip-btn"  data-toggle="tooltip" data-placement="top" title="More"><i class="fas fa-info-circle"></i></button></span>
-                   </a> -->
-=======
                   <form action="/orders/checkout/<%=products[i].sid%>/<%=products[i].productId%>" method="post">
                     <input type="number" name="quantity" id="quantity" value="1" hidden>
                     <button type="submit" class="btn btn-cart tooltip-btn buy-btn"  data-toggle="tooltip" data-placement="top" id="<%=products[i].productId%>" title="Buy now"><i class="fas fa-shopping-cart"></i></button>
@@ -132,7 +123,6 @@
                 <button  class="btn btn-more tooltip-btn" data-toggle="tooltip" data-placement="top" title="More"><i class="fas fa-info-circle"></i></button>
                    </span>
                    </a>
->>>>>>> fbf8f6dea5bcde7bdaea840195151747f26da2ec:views/store/dropshipper/allproducts.ejs
               </div>
              
             </div>
