@@ -52,11 +52,10 @@
               <div class="purchase-info d-flex justify-content-between mt-5">
               
                 <div>
-                  <% if(role=="whole-seller") {%>
-              <label for="qty" class="qty-label">Quantity:</label>
-              <input type="number" min="<%= settings.qty%>" value="<%= settings.qty%>" id="qty"  />
+               
               
               
+              <% if(role=="whole-seller") {%>
               <div class="mt-1">
                 <label for="time" class="time-label">Select duration</label>
                 <select  name="time" class="form-select " id="time" aria-label="Default select example">
@@ -70,7 +69,9 @@
                 <% if((role=="whole-seller" && (product.productInventory>settings.qty))||role=="drop-shipper"){ %>
                 <div class="mt-4">
                   <form action="/orders/checkout/<%=id%>/<%=product.productId%>" method="post">
-                  <input type="number" name="quantity" id="quantity" value="1" hidden>
+                  <!-- <input type="number" name="quantity" id="quantity" value="1" hidden> -->
+                  <label for="qty" class="qty-label">Quantity:</label>
+                 <input type="number"  name="quantity" id="quantity" min="1" max="3" value="1" id="qty" />
                   <button type="submit" class="btn buy-btn" id="btn-buy" >Buy now
                     <span class="d-none d-md-inline"><i class="fas fa-shopping-bag"></i></span>
                   </button>

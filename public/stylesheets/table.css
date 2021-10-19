@@ -195,3 +195,14 @@ table.dataTable {
 	background-color: #fcd3e1;
 	color: #f66d9b;
 }
+.alert {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    margin-top: 20px;
+    background-color: #fd4d96;
+    border: none;
+    text-align: center;
+  
+    color: white;
+  }

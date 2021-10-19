@@ -7,6 +7,7 @@ module.exports.CreateCheckout = async (req, res) => {
   const storeId = req.params.storeId;
   const productId = req.params.productId;
   const quantity = req.body.quantity;
+  console.log("quantity check",quantity);
 
   // console.log(req.params,req.body);
 

@@ -19,6 +19,7 @@
   <body>
     <%- include('../../partials/store/products_nav.ejs') %>
     <%- include('../../partials/store/cart.ejs') %>
+    <%- include('../../partials/flash') %>
     <div class="container-fluid">
     <div class=" product-container d-flex justify-content-center">
     <div class="card-wrapper d-flex justify-content-center">
@@ -53,8 +54,9 @@
               
                 <div>
                   <% if(role=="whole-seller") {%>
+               <form action="/store/dropshipper/add-product" method="POST">    
               <label for="qty" class="qty-label">Quantity:</label>
-              <input type="number" min="<%= settings.qty%>" value="<%= settings.qty%>" id="qty"  />
+              <input type="number" min="<%= settings.qty%>" name="qty" value="<%= settings.qty%>" id="qty"  />
               
               
               <div class="mt-1">
@@ -69,10 +71,16 @@
               
                 <% if((role=="whole-seller" && (product.productInventory>settings.qty))||role=="drop-shipper"){ %>
                 <div class="mt-4">
-                  <button type="button" class="btn buy-btn" id="btn-buy"  onclick="buyProd(`<%=id%>` ,`<%=pid%>`)">Buy now
+                 
+                  <input type="text" name="sid"  id="sid" value="<%=id%>" hidden>
+                  <input type="text" name="pid"  id="pid" value="<%=pid%>" hidden>
+
+                  
+                  <button type="submit" class="btn buy-btn" id="btn-buy"  >Buy now
                     <span class="d-none d-md-inline"><i class="fas fa-shopping-bag"></i></span>
                   </button>
                 </form>
+               
                   
                 </div>
                 
@@ -96,6 +104,36 @@
         <div class="row description">
           
           <% if(role=="whole-seller") {%>
+            <div>
+              <table class="table sales-table">
+                <thead>
+                  <tr>
+                   <h2><th colspan="4" class="table-head" style="border:1px solid #ececed">Sales Prediction</th></h2>
+                  </tr> 
+                </thead>
+                <tbody>
+                  <tr style="font-weight: 600;">
+                    <td>Duration</td>
+                    <td>1 Days</td>
+                    <td>7 Days</td>
+                    <td>1 Month</td>
+                  </tr>
+                  <tr style="font-weight: 600;">
+                    <td>Cost</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr> 
+                  
+                </tbody>
+              </table>
+              <br>
+              <br>
+             
+              
+            </div>
+           
+
           <div>
             <table class="table infracost-table">
               <thead>
@@ -119,9 +157,14 @@
                 
               </tbody>
             </table>
+            <br>
            
             
           </div>
+
+
+
+       
           <% } %>
 
           <div class="col-12 ">
