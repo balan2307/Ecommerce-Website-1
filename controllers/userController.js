@@ -1,7 +1,7 @@
 const firebase=require('../config/firebaseInit');
 const db=firebase.db;
-const fetch = require('node-fetch');
 const { drop } = require('lodash');
+const axios = require('axios');
 
 module.exports.Index = (req, res) => {
   res.send("respond with a resource"); //test response  
@@ -153,7 +153,15 @@ module.exports.ProductPage=async(req,res)=>
   let st_name;
   let data;
   let role;
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
+
+    //calling deployed ml model
+    const predictedData = await axios.get(
+      `http://127.0.0.1:10100/predict?productId=${pid}`
+    )
+
+    console.log("predicted data",predictedData.data);
+    
 
   const store =  db
   .collection("users")
@@ -176,12 +184,27 @@ module.exports.ProductPage=async(req,res)=>
     {
       if(user_role)
       {
-        res.render("store/wholeseller/product.ejs",{product:productFound,st_name,id:sid,pid,settings,role});
+        res.render("store/wholeseller/product.ejs", {
+          product: productFound,
+          st_name,
+          id: sid,
+          pid,
+          settings,
+          role,
+          predictedData:predictedData.data.result,
+        });
 
       }
       else
       {
-        res.render("store/dropshipper/product.ejs",{product:productFound,st_name,id:sid,settings,role});
+        res.render("store/dropshipper/product.ejs", {
+          product: productFound,
+          st_name,
+          id: sid,
+          settings,
+          role,
+          predictedData: predictedData.data.result,
+        });
 
       }
 
