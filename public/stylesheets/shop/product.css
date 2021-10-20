@@ -193,7 +193,7 @@ img{
     font-size: 1.2rem
 }
 
-.infracost-table
+.infracost-table,.sales-table
 {
     
     border: 1px solid #dbdbdb;
@@ -262,3 +262,17 @@ body {
 html {
     scroll-behavior: smooth;
   }
+
+
+  .alert {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    margin-top: 20px;
+    background-color: #fd4d96;
+    border: none;
+    text-align: center;
+  
+    color: white;
+  }
+  

@@ -8,6 +8,12 @@
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 <!-- </head> -->
 <!-- <body> -->
+  <link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+  integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+  crossorigin="anonymous"
+/>
 <div class="sidebar">
   <div class="logo-details">
     <i class="bx bxs-shopping-bag icon"></i>
@@ -20,7 +26,6 @@
       <input type="text" placeholder="Search..." />
       <span class="tooltip">Search</span>
     </li>
-
     <% if(user.role=="drop-shipper"){ %>
     <li>
       <a href="<%=user.store_url%>">
@@ -29,6 +34,18 @@
       </a>
       <span class="tooltip">My Store</span>
     </li>
+
+    <li>
+      <a href="/store/sell/wholesellproducts">
+        <i class="fas fa-box-open"></i>
+        <span class="links_name">Buy Products</span>
+      </a>
+      <span class="tooltip">Buy Products</span>
+    </li>
+
+
+
+
     <% } else if(user.role=="whole-seller"){ %>
       <li>
         <a href="/store/sell/wholesellproducts">
@@ -39,15 +56,15 @@
       </li>
 
       <%}%>
-    <li>
+    <!-- <li>
       <a href="/admin/dashboard">
         <i class="bx bx-grid-alt"></i>
         <span class="links_name">Dashboard</span>
       </a>
       <span class="tooltip">Dashboard</span>
-    </li>
+    </li> -->
     <li>
-      <a href="#">
+      <a href="/admin/customers">
         <i class="bx bx-user"></i>
         <span class="links_name">Customers</span>
       </a>

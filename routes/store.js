@@ -15,7 +15,7 @@ router.get("/addstore", userController.AddCollection);
 // Global store of wholeseller's products
 router.get("/sell/wholesellproducts",userController.wholeProd)
 // router.get("/shop/allproducts", (req, res) => {
-//   res.render("store/allproducts.ejs");
+//   res.render("store/dropshipper/allproducts.ejs");
 // });
 
 // router.get("/shop/:sid/getprod/:pid",userController.ProductDet)
@@ -29,6 +29,8 @@ router.get("/shop/:sid/product/:pid",userController.ProductPage)
 
 // Get all products of a Drop-shipper
 router.get("/shop/:sid/allproducts",userController.renderAllproducts)
+
+router.post("/dropshipper/add-product",userController.Updatedropshipper)
 
 // router.get("/shop/:id/addViews",()=>
 // {

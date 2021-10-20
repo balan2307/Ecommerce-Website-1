@@ -4,7 +4,7 @@ const adminRouter = require('./admin');
 const storeRouter = require('./store');
 const isLoggedIn = require("../middlewares/user_auth");
 const landingRouter = require("./landingPage");
-
+const ordersRouter = require('./orders');
 // const firebase = require('../config/firebaseInit');
 // const db = firebase.firestore();/
 const db = require('../config/firebaseInit');
@@ -29,8 +29,8 @@ const InitRoutes = (app) => {
   app.use("/",landingRouter);
   app.use("/users", usersRouter);
   app.use("/admin", adminRouter);
-  app.use("/store",storeRouter);
-  
+  app.use("/store", storeRouter);
+  app.use("/orders",ordersRouter)
 
   console.log("Routes Initialized")
 
