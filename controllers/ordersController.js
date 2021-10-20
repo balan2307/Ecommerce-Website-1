@@ -60,8 +60,8 @@ module.exports.CreateCheckout = async (req, res) => {
       allowed_countries: ["US", "CA", "IN"],
     },
     mode: "payment",
-    success_url: `${server_url}/orders/success/${order.id}`,
-    cancel_url: `${server_url}/orders/failure/${order.id}`,
+    success_url: `${server_url}/orders/success/${order.id}/${order.storeId}`,
+    cancel_url: `${server_url}/orders/failure/${order.id}/${order.storeId}`,
   });
   res.redirect(303, session.url);
   // res.send(session.url);
