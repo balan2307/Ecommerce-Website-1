@@ -8,6 +8,7 @@ const { route } = require("./users");
 
 /* GET users listing. */
 router.get("/products",isLoggedIn, adminController.ViewProducts);
+router.get("/orders",isLoggedIn, adminController.ViewOrders);
 router.get("/product/:productId", isLoggedIn, adminController.SingleProduct);     
 router.post(
   "/addProduct",
