@@ -50,25 +50,6 @@ module.exports.ViewProducts = async (req, res) => {
     docID:docID,
   });
 };
-module.exports.showCustomer=async (req,res)=>{
-  const docID = req.session.store.id;
-
-  const store = await getStore(docID);
-  console.log("Customers::",store.customer)
-  res.render("admin/customer",{
-    customer:store.customer,
-  })
-  
-  }
-  module.exports.showCustomerDetails=async (req,res)=>{
-    const docID = req.session.store.id;
-    let index=parseInt(req.params.ind);
-    const store = await getStore(docID);
-   
-    console.log("Customers::",store.customer[index])
-    res.send(store.customer[index]);
-    
-    }
 
 
 module.exports.SingleProduct = async (req, res) => {
@@ -313,17 +294,17 @@ const deleteImageFromCloud = (ref) => {
   }
 };
 module.exports.changeStatus=async (req,res)=>{
-  let docID = req.session.store.id;
-  const store = await getStore(docID);
-  let {products}=store;
+let docID = req.session.store.id;
+const store = await getStore(docID);
+ let {products}=store;
   products.forEach(product=>{
     if(product.productId==req.body.productId){
       product.productStatus=(req.body.status==="Active"?"Active":"Draft");
       return;
     }
   })
-  console.log(products)
-  store.products=products;
+
+   store.products=products;
   db.collection("users").doc(docID).set(store)
   .then(() => {
   console.log("Document successfully written!");
@@ -335,6 +316,32 @@ module.exports.changeStatus=async (req,res)=>{
 
 
  }
+ module.exports.showCustomer=async (req,res)=>{
+  const docID = req.session.store.id;
+  const store = await getStore(docID);
+  res.render("admin/customer",{
+    customer:store.customer,
+  })
+  
+  }
+  module.exports.showCustomerDetails=async (req,res)=>{
+    const docID = req.session.store.id;
+    let index=parseInt(req.params.ind);
+    const store = await getStore(docID);
+    res.send(store.customer[index]);
+    }
+
+    module.exports.ViewOrders = async (req, res) => {
+      const docID = req.session.store.id;
+      const store = await getStore(docID);
+      res.render("admin/orders-page", {
+        message: req.flash("ProductsMessage"),
+        products: store.products,
+        docID:docID,
+      });
+    };
+      
+
 
 const getStore = async (docID) => {
   // const docID = "HwvSNn14iO9nmgD8KYNK";
