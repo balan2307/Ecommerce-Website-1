@@ -318,7 +318,8 @@ const store = await getStore(docID);
  }
  module.exports.showCustomer=async (req,res)=>{
   const docID = req.session.store.id;
-  const store = await getStore(docID);
+   const store = await getStore(docID);
+   console.log(JSON.stringify(store.customer, null, 2));
   res.render("admin/customer",{
     customer:store.customer,
   })

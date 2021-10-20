@@ -50,7 +50,7 @@ module.exports.CreateCheckout = async (req, res) => {
     "🚀 ~ file: ordersController.js ~ line 47 ~ module.exports.CreateCheckout= ~ order",
     order.id
   );
-
+    console.log("storeId", storeId);
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: line_items,
@@ -60,8 +60,8 @@ module.exports.CreateCheckout = async (req, res) => {
       allowed_countries: ["US", "CA", "IN"],
     },
     mode: "payment",
-    success_url: `${server_url}/orders/success/${order.id}/${order.storeId}`,
-    cancel_url: `${server_url}/orders/failure/${order.id}/${order.storeId}`,
+    success_url: `${server_url}/orders/success/${order.id}/${storeId}`,
+    cancel_url: `${server_url}/orders/failure/${order.id}/${storeId}`,
   });
   res.redirect(303, session.url);
   // res.send(session.url);

@@ -182,6 +182,7 @@ module.exports.ProductPage=async(req,res)=>
 
     if(productFound)
     {
+      console.log("🚀 ~ file: userController.js ~ line 186 ~ .then ~ user_role", user_role)
       if(user_role)
       {
         res.render("store/wholeseller/product.ejs", {

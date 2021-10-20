@@ -168,7 +168,7 @@
 				</div>
 	
     <section class="root-section">
-			<h2 class="text">Products</h2>
+			<h2 class="text">Customers</h2>
 			<div class="container capsule">
 				<div class="row py-1">
 					<div class="col-12">
@@ -190,7 +190,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% for( let index = 0; index < 3; index++ ) { %>
+							
+								<% for( let index = 0; index < customer.length; index++ ) { %>
 
 								<tr>
 									
@@ -199,7 +200,7 @@
 										</div>
 									</td>
 									<td><%= customer[index].email %> </td>
-									<td>   <%= parseInt(customer[index].Products[0]["price_data"]["unit_amount"])/100 %>  </td>
+									<td>   <%= parseInt(customer[index].Products[0]["price_data"]["unit_amount"])/100 * parseInt(customer[index].Products[0].quantity)  %>  </td>
 									<td>
 										<button type="button" style="background-color: #1d1b31; color: white" class="btn " data-bs-toggle="modal" data-bs-target="#addProductsModal" onClick="getCustomerdetails(`<%=index%>`)" >
 											Purchased Products
