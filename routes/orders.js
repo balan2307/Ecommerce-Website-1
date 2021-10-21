@@ -8,42 +8,15 @@ const { log } = require("debug");
 const db = firebase.db;
 
 /* GET home page. */
-router.get("/success/:orderId", async function (req, res) {
-    // db.collection("users")
-    //   .doc("HLONOIS7dgj7s6Cqfdwn")
-    //   .get()
-    //   .then((result) => {
-    //     //   console.log(JSON.stringify(result.data(), null, 2));
-    //     const store = result.data();
-    //     const { products } = store;
-    //     products.find((prod) => {
-    //       if (prod.productId === "37c2f043-1a2c-4c62-b1ce-99cbc8dadb8f") {
-    //         prod.productInventory -= 1;
-    //         return true;
-    //       }
-    //     });
-    //     console.log(products);
-    //     db.collection("users")
-    //       .doc("HLONOIS7dgj7s6Cqfdwn")
-    //       .set(
-    //         {
-    //           products: products,
-    //         },
-    //         { merge: true }
-    //       )
-    //       .then((result) => {
-    //         console.log("product inventory updated in store orders");
-    //       })
-    //       .catch((err) => {
-    //         console.log("Error in product inventory updation:", err);
-    //       });
-    //   });
-
-    
-  res.send("success");
+router.get("/success/:orderId/:storeId", async function (req, res) {
+  const storeId = req.params.storeId;
+  const homeUrl = `/store/shop/${storeId}`
+  res.render("success", { homeUrl });
 });
-router.get("/failure/:orderId", function (req, res) {
-  res.send("failure");
+router.get("/failure/:orderId/:storeId", function (req, res) {
+  const storeId = req.params.storeId;
+  const homeUrl = `/store/shop/${storeId}`;
+  res.render("failure", { homeUrl });
 });
 
 router.post("/checkout/:storeId/:productId", ordersController.CreateCheckout);
