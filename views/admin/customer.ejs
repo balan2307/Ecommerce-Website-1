@@ -190,10 +190,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% for( let index = 0; index < 3; index++ ) { %>
+								<% for( let index = 0; index < customer.length; index++ ) { %>
 									<% 	let sum=0   %>
                                  <%    customer[index].Products.forEach((elle)=>{   %>
-									<% 		sum=sum+parseInt(elle["price_data"]["unit_amount"])/100    %>
+									<% 		sum=sum+parseInt(elle["price_data"]["unit_amount"])/100*parseInt(elle.quantity)    %>
 									<% 	})    %>
 
 								<tr>
@@ -224,7 +224,7 @@
 			</div>
 		</section>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-		<script src="/javascripts/CustomerTable.js"></script>
+		<script src="/javascripts/customerTable.js"></script>
 		<script src="/javascripts/form-validation-client.js"></script>
 	
 

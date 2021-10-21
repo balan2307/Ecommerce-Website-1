@@ -11,13 +11,13 @@ const db = require('../config/firebaseInit');
 
 const InitRoutes = (app) => {
   /* GET home page. */
-  app.get("/",isLoggedIn, function (req, res, next) {
+  // app.get("/", function (req, res, next) {
  
     
     
  
-    res.render("index", { title: "Express" });
-  });
+  //   res.render("index", { title: "Express" });
+  // });
   
   app.get("/test", function (req, res, next) {
     res.render("test");
