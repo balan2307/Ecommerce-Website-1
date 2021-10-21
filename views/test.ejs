@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/admin/products" method="POST" enctype="multipart/form-data">
+        <input type="text" name="productName" id="productName">
+        <input type="file" name="product-image" id="product-image" accept=".png,.jpg,.jpeg">
+        <input type="number" name="productPrice" id="productPrice">
+        <input type="number" name="productInventory" id="productInventory">
+        <input type="radio" name="productStatus" id="productActive" value="Active">Active
+        <input type="radio" name="productStatus" id="productDraft" value="Draft">Draft
+        <textarea name="productDescription" id="productDescription" cols="30" rows="10"></textarea>
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>
+
+[
+    {
+      productName: 'Blue Shirt',
+      productInventory: 5000,
+      productImage: 'https://storage.googleapis.com/ecommerce-website-fff69.appspot.com/public/images/product-images/1.jfif',
+      productId: '43d5bb2d-d48e-4583-9c7a-0e582937b0a1',
+      productDescription: 'Premium Quality Shirts',
+      productStatus: 'Active',
+      productPrice: 550
+    },
+    {
+      productName: 'Camera',
+      productDescription: 'Premium Quality Camera',
+      productInventory: 5000,
+      productStatus: 'Active',
+      productId: '18df4b1d-6cca-44cd-9996-fa9aeab7d3fb',
+      productImage: 'https://storage.googleapis.com/ecommerce-website-fff69.appspot.com/public/images/product-images/1628696140-download-(2).jpeg', 
+      productPrice: 750
+    },
+    {
+      productName: 'Camera red',
+      productImage: 'https://storage.googleapis.com/ecommerce-website-fff69.appspot.com/public/images/product-images/1628696268-download-(1).jpeg', 
+      productInventory: 5000,
+      productDescription: 'Premium Quality Camera',
+      productPrice: 750,
+      productStatus: 'Active',
+      productId: 'aa2787b6-a16a-4457-8deb-af498e60a12e'
+    }
+  ]

@@ -1,0 +1,149 @@
+<!-- <!DOCTYPE html> -->
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<!-- <html lang="en" dir="ltr"> -->
+<!-- <head> -->
+<!-- <meta charset="UTF-8"> -->
+<!-- <title> Responsive Sidebar Menu  | CodingLab </title> -->
+<!-- <link rel="stylesheet" href="/stylesheets/navbar.css"> -->
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<!-- </head> -->
+<!-- <body> -->
+  <link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+  integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+  crossorigin="anonymous"
+/>
+<div class="sidebar">
+  <div class="logo-details">
+    <i class="bx bxs-shopping-bag icon"></i>
+    <div class="logo_name">Shoppers Unite</div>
+    <i class="bx bx-menu" id="btn"></i>
+  </div>
+  <ul class="nav-list">
+    <li>
+      <i class="bx bx-search"></i>
+      <input type="text" placeholder="Search..." />
+      <span class="tooltip">Search</span>
+    </li>
+    <% if(user.role=="drop-shipper"){ %>
+    <li>
+      <a href="<%=user.store_url%>">
+        <i class='bx bxs-store'></i>
+        <span class="links_name">My Store</span>
+      </a>
+      <span class="tooltip">My Store</span>
+    </li>
+
+    <li>
+      <a href="/store/sell/wholesellproducts">
+        <i class="fas fa-box-open"></i>
+        <span class="links_name">Buy Products</span>
+      </a>
+      <span class="tooltip">Buy Products</span>
+    </li>
+
+
+
+
+    <% } else if(user.role=="whole-seller"){ %>
+      <li>
+        <a href="/store/sell/wholesellproducts">
+          <i class='bx bxs-store'></i>
+          <span class="links_name">Global Store</span>
+        </a>
+        <span class="tooltip">Global Store</span>
+      </li>
+
+      <%}%>
+    <!-- <li>
+      <a href="/admin/dashboard">
+        <i class="bx bx-grid-alt"></i>
+        <span class="links_name">Dashboard</span>
+      </a>
+      <span class="tooltip">Dashboard</span>
+    </li> -->
+    <li>
+      <a href="/admin/customers">
+        <i class="bx bx-user"></i>
+        <span class="links_name">Customers</span>
+      </a>
+      <span class="tooltip">Customers</span>
+    </li>
+    <!-- <li>
+      <a href="#">
+        <i class="bx bx-chat"></i>
+        <span class="links_name">Email Marketing</span>
+      </a>
+      <span class="tooltip">Email Marketing</span>
+    </li> -->
+    <!-- <li>
+       <a href="#">
+         <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">Analytics</span>
+       </a>
+       <span class="tooltip">Analytics</span>
+     </li> -->
+    <li>
+      <a href="/admin/products">
+        <i class="bx bx-store"></i>
+        <span class="links_name">Products</span>
+      </a>
+      <span class="tooltip">Products</span>
+    </li>
+    <li>
+      <a href="/admin/orders">
+        <i class="bx bx-cart-alt"></i>
+        <span class="links_name">Orders</span>
+      </a>
+      <span class="tooltip">Orders</span>
+    </li>
+    <!-- <li>
+       <a href="#">
+         <i class='bx bx-heart' ></i>
+         <span class="links_name">Saved</span>
+       </a>
+       <span class="tooltip">Saved</span>
+     </li> -->
+     
+    <li>
+     <% if(user && user.role=="whole-seller") { %>
+      <a href="/admin/setting">
+        <i class="bx bx-cog"></i>
+        <span class="links_name">Settings</span>
+      </a>
+      <% } else { %>
+        <a href="#">
+          <i class="bx bx-cog"></i>
+          <span class="links_name">Settings</span>
+        </a>
+
+      <% } %>
+
+
+    
+      <span class="tooltip">Settings</span>
+    </li>
+    <li class="profile">
+      <div class="profile-details">
+        <div class="shopInitial">V</div>
+        <!-- <img src="profile.jpg" alt="profileImg" /> -->
+        <div class="name_job">
+          <div class="name"><%= user.name %> </div>
+          <div class="job" id="shopName"><%= user.store_name %> </div>
+        </div>
+      </div>
+      <form action="/admin/logout" method="GET">
+        
+          <button><i class="bx bx-log-out" id="log_out"></i></button>
+       
+
+      </form>
+     
+    </li>
+  </ul>
+</div>
+
+<script src="/javascripts/navbar.js"></script>
+<!-- </body> -->
+<!-- </html> -->

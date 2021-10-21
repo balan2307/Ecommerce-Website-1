@@ -1,0 +1,83 @@
+body
+{
+    background:#ffffff;
+}
+
+.payment
+{
+    position: absolute;
+	border:1px solid #f2f2f2;
+	/* height: 45%; */
+    min-height: 300px;
+    max-height: 500px;
+    border-radius:20px;
+    background:rgb(241, 236, 236);
+    width: 50%;
+    /* top: 50%; */
+    left: 25%;
+
+}
+.payment_header
+{
+	background:rgb(158, 16, 16);
+	padding:20px;
+    height: 30%;
+    border-radius:20px 20px 0px 0px;
+	   
+}
+.check
+{
+	   margin:0px auto;
+	   width:50px;
+	   height:50px;
+	   border-radius:100%;
+	   background:#fff;
+	   text-align:center;
+}
+   
+.check i {
+    color: #000000;
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.content 
+{
+    text-align:center;
+}
+
+.content  h1
+{
+    font-weight: 800;
+    font-size:25px;
+    padding-top:25px;
+}
+
+.content a
+{
+    position: absolute;
+    width:45%;
+    text-decoration: none;
+    font-weight: bold;
+    height:15%;
+    border: 3px rgb(241, 236, 236);
+    color: rgb(255, 255, 255);
+    border-style: solid;
+    border-radius:30px;
+    padding:5px 10px;
+    background:rgb(158, 16, 16);
+    transition:all ease-in-out 0.7s;
+    left: 27%;
+}
+
+.content a:hover
+{
+    text-decoration:none;
+    border-radius: 0;
+}
+.content a:active
+{
+    background: white;
+    color: black;
+}

@@ -1,0 +1,122 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@200&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+.setting-form
+{
+    padding: 30px;
+    margin-top: 50px;
+ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #e1e1e1;
+    /* min-width: 300px;
+    max-width: 500px; */
+    border-radius: 2rem;
+    /* height: 500px; */
+  
+
+    position: relative;
+    background-color: #e8ebdb;
+    /* min-height: 100vh; */
+    top: 0;
+    left: 38px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+
+}
+
+
+.setting-det-form
+{
+    width: 100%;
+    /* height: 100%; */
+    height: 100vh;
+    
+   
+}
+.qty-prod
+{
+    width: 60px;
+    height: 30px;
+}
+
+.infra-cost
+{
+    margin-left: 10px;
+    border: none;
+    height: 30px;
+   
+}
+
+.infra-price 
+{
+    width: 120px;
+    font-size: 1.2rem;
+    
+}
+.infra-qty
+{
+    font-size: 1.2rem;
+   
+}
+body{
+    font-family: 'Libre Franklin', sans-serif;
+}
+#price1,#price2,#price3
+{
+    width: 100px;
+}
+
+.alert
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 20px;
+    background-color: #b5fad7;
+    border: none;
+  
+    color: rgb(15, 4, 4);
+    font-weight: bold;
+    /* border: 1px solid red; */
+}
+
+h4{
+    font-weight: 600;
+}
+
+input{
+    padding: 8px;
+}
+
+.sidebar
+{
+    /* position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 78px;
+    background: #11101d;
+    padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease; */
+}
+
+@media (min-width:990px)
+{
+
+    .setting-form
+    {
+         min-width: 300px;
+    max-width: 500px;
+    }
+
+}

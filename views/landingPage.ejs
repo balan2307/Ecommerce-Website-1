@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+	<%- include('partials/imports') %>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="/stylesheets/landingPage.css">
+
+</head>
+<body>
+
+    
+    
+<!-- header section starts  -->
+
+<header>
+
+    
+
+    <a href="#" class="logo"><span>Shop</span>App</a>
+
+    <input type="checkbox" id="menu-bar">
+    <label for="menu-bar" class="fas fa-bars"></label>
+
+    <!-- Toast -->
+		<% if (message.length>0) { %>
+			<div style="z-index: 99;" aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts">
+				<div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3" id="toastPlacement">
+					<div class="toast">
+					<div class="toast-header">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLvmjZbtnqotRfrFrv0ghNDmvpGEdnYqC-qg&usqp=CAU" class="rounded me-2" style="width: 8%!important;" alt="...">
+						<strong class="me-auto">Shoppers Unite</strong>
+						<small>11 mins ago</small>
+						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+					<div class="toast-body">
+						<%= message %>
+					</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#features">features</a>
+        <a href="#about">about</a>
+        <a href="#review">review</a>
+        <a href="#contact">contact</a>
+        <a href="/admin/login" class="btn" style="color: #fff;">Login</a>
+    </nav>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>Best E-commerce <span>website</span></h3>
+        <p>save your time and money</p>
+        <a href="/admin/register" class="btn">Signup Now</a>
+    </div>
+
+    <div class="image">
+        <img src="/images/landing_page/home-img.png" alt="">
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- features section starts  -->
+
+<section class="features" id="features">
+
+    <h1 class="heading"> features </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="/images/landing_page/laptops.png" alt="">
+            <h3>amazing UI design</h3>
+            <p>In order to make the user feel easy to purchase or sell products, we have designed a user freindly interface.</p>
+            <a href="#" class="btn">read more</a>
+        </div>
+
+        <div class="box">
+            <img src="/images/landing_page/savings.jpg" alt="">
+            <h3>Spend more – Save more</h3>
+            <p>Constant discount in products makes the user spend less and purchase more. This is the best place for your online shopping.</p>
+            <a href="#" class="btn">read more</a>
+        </div>
+
+        <div class="box">
+            <img src="/images/landing_page/f-icon3.png" alt="">
+            <h3>freindly interactions</h3>
+            <p>Get constant updates of offers which are available here on your mail. Feel free to contact us for further queries</p>
+            <a href="#" class="btn">read more</a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- features section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+    <h1 class="heading"> about the app </h1>
+
+    <div class="column">
+
+        <div class="image">
+            <img src="/images/landing_page/about-img.png" alt="">
+        </div>
+
+        <div class="content">
+            <h3>Easy And Perfect Solution For Your online shopping</h3>
+            <p>Shopping wastes a lot of time and money. In order to buy our goods we spend a lot in travelling.</p>
+            <p>So this is a fully flexible e-commerce site where with one click you can buy your desired product from you home.
+            </p>
+            <!-- <div class="buttons">
+                <a href="#" class="btn"> <i class="fab fa-apple"></i> app store </a>
+                <a href="#" class="btn"> <i class="fab fa-google-play"></i> google-play </a>
+            </div> -->
+        </div>
+
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- newsletter  -->
+
+<div class="newsletter">
+
+    <h3>Subscribe Us</h3>
+    <p>Subscribe us to get personalized mails about the launch of new products including the new offers and discounts on the products.</p>
+    <form action="">
+        <input type="email" placeholder="enter your email">
+        <input type="submit" value="Subscribe">
+    </form>
+
+</div>
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+    <h1 class="heading"> people's review </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <i class="fas fa-quote-right"></i>
+            <div class="user">
+                <img src="/images/landing_page/pic1.png" alt="">
+                <h3>john deo</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="comment">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus et, perspiciatis nisi tempore aspernatur 
+                    accusantium sed distinctio facilis aperiam laborum autem earum repellat, commodi eum. Ullam cupiditate 
+                    expedita officiis obcaecati?
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+            <i class="fas fa-quote-right"></i>
+            <div class="user">
+                <img src="/images/landing_page/pic2.png" alt="">
+                <h3>john deo</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="comment">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus et, perspiciatis nisi tempore aspernatur accusantium sed distinctio facilis aperiam laborum autem earum repellat, commodi eum. Ullam cupiditate expedita officiis obcaecati?
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+            <i class="fas fa-quote-right"></i>
+            <div class="user">
+                <img src="/images/landing_page/pic3.png" alt="">
+                <h3>john deo</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="comment">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus et, perspiciatis nisi tempore aspernatur 
+                    accusantium sed distinctio facilis aperiam laborum autem earum repellat, commodi eum. Ullam cupiditate 
+                    expedita officiis obcaecati?
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- review section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+    <div class="image">
+        <img src="/images/landing_page/contact-img.png" alt="">
+    </div>
+
+    <form action="/contactUs" method="POST">
+
+        <h1 class="heading">contact us</h1>
+
+        <div class="inputBox">
+            <input type="text" name="name" id="name" required>
+            <label>name</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="email" name="email" id="email" required>
+            <label>email</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="number" name="phone" id="phone" required>
+            <label>phone</label>
+        </div>
+
+        <div class="inputBox">
+            <textarea required name="message" id="message" cols="30" rows="10"></textarea>
+            <label>message</label>
+        </div>
+
+        <input type="submit" class="btn" value="send message">
+
+    </form>
+
+</section>
+
+<!-- contact section edns -->
+
+<!-- footer section starts  -->
+
+<div class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>about us</h3>
+            <p>Shopping wastes a lot of time and money. In order to buy our goods we spend a lot in travelling. This is a website which would 
+                help the people by simplyfying the work of shopping.</p>
+        </div>
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#home">home</a>
+            <a href="#features">features</a>
+            <a href="#about">about</a>
+            <a href="#review">review</a>
+            <a href="#contact">contact</a>
+        </div>
+
+        <div class="box">
+            <h3>follow us</h3>
+            <a href="#">facebook</a>
+            <a href="#">instagram</a>
+            <a href="#">pinterest</a>
+            <a href="#">twitter</a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <div class="info">
+                <i class="fas fa-phone"></i>
+                <p> +123-456-7890 <br> +111-2222-333 </p>
+            </div>
+            <div class="info">
+                <i class="fas fa-envelope"></i>
+                <p> example@gmail.com <br> example@gmail.com </p>
+            </div>
+            <div class="info">
+                <i class="fas fa-map-marker-alt"></i>
+                <p> mumbai, india - 400104 </p>
+            </div>
+        </div>
+
+    </div>
+
+    <h1 class="credit"> &copy; copyright @ 2021 </h1>
+
+</div>
+
+<!-- footer section ends -->
+
+</body>
+</html>
