@@ -190,8 +190,8 @@ module.exports.ProductPage=async(req,res)=>
           id: sid,
           pid,
           settings,
-          role,
-          predictedData:predictedData.data.result,
+          role
+          // predictedData:predictedData.data.result,
         });
 
       }
@@ -202,8 +202,8 @@ module.exports.ProductPage=async(req,res)=>
           st_name,
           id: sid,
           settings,
-          role,
-          predictedData: predictedData.data.result,
+          role
+          // predictedData: predictedData.data.result,
         });
 
       }
