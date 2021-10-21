@@ -157,8 +157,8 @@ module.exports.ProductPage=async(req,res)=>
 
     //calling deployed ml model
     const predictedData = await axios.get(
-      `http://127.0.0.1:10100/predict?productId=${pid}`
-    )
+      `https://te-mini-proj.herokuapp.com/hello/?productId=${pid}`
+    );
 
     console.log("predicted data",predictedData.data);
     
@@ -182,6 +182,7 @@ module.exports.ProductPage=async(req,res)=>
 
     if(productFound)
     {
+      console.log("🚀 ~ file: userController.js ~ line 186 ~ .then ~ user_role", user_role)
       if(user_role)
       {
         res.render("store/wholeseller/product.ejs", {
@@ -190,8 +191,8 @@ module.exports.ProductPage=async(req,res)=>
           id: sid,
           pid,
           settings,
-          role
-          // predictedData:predictedData.data.result,
+          role,
+          predictedData:predictedData.data.val,
         });
 
       }
@@ -202,8 +203,8 @@ module.exports.ProductPage=async(req,res)=>
           st_name,
           id: sid,
           settings,
-          role
-          // predictedData: predictedData.data.result,
+          role,
+          predictedData: predictedData.data.val,
         });
 
       }
