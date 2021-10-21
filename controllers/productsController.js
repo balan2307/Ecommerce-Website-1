@@ -330,13 +330,25 @@ const store = await getStore(docID);
     const store = await getStore(docID);
     res.send(store.customer[index]);
     }
+    module.exports.showOrderDetails=async (req,res)=>{
+      const docID = req.session.store.id;
+      let index=parseInt(req.params.ind);
+      const orders = await db.collection("orders").where("storeId","==",docID).get()
+      let storeOrders = [];
+      orders.forEach(order=>storeOrders.push(order.data()));
+      
+      res.send(storeOrders[index].line_items);
+      }
 
     module.exports.ViewOrders = async (req, res) => {
       const docID = req.session.store.id;
-      const store = await getStore(docID);
+      const orders = await db.collection("orders").where("storeId","==",docID).get()
+      let storeOrders = [];
+      orders.forEach(order=>storeOrders.push(order.data()));
+
       res.render("admin/orders-page", {
         message: req.flash("ProductsMessage"),
-        products: store.products,
+        orders: storeOrders,
         docID:docID,
       });
     };

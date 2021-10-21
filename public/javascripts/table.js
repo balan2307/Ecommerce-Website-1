@@ -41,7 +41,7 @@ function changeStatus(index,productId) {
     status.classList.remove("bg-danger");
   }
 
-// console.log("client side:",docID)
+
   axios.post('/admin/changeStatus', {
     status: status.innerText,
    productId:productId,
@@ -56,4 +56,3 @@ function changeStatus(index,productId) {
 
 }
 
-// <%= products[1].productStatus=== "Active"? "bg-success": "bg-danger" %>
