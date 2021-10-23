@@ -17,7 +17,7 @@
 <div class="sidebar">
   <div class="logo-details">
     <i class="bx bxs-shopping-bag icon"></i>
-    <div class="logo_name">Website Name</div>
+    <div class="logo_name">Shoppers Unite</div>
     <i class="bx bx-menu" id="btn"></i>
   </div>
   <ul class="nav-list">
@@ -129,8 +129,8 @@
         <div class="shopInitial">V</div>
         <!-- <img src="profile.jpg" alt="profileImg" /> -->
         <div class="name_job">
-          <div class="name">Shop Owner</div>
-          <div class="job" id="shopName">ShopName</div>
+          <div class="name"><%= user.name %> </div>
+          <div class="job" id="shopName"><%= user.store_name %> </div>
         </div>
       </div>
       <form action="/admin/logout" method="GET">
