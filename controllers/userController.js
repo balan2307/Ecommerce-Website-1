@@ -156,7 +156,7 @@ module.exports.ProductPage=async(req,res)=>
   let st_name;
   let data;
   let role;
-  console.log("Flash", req.flash)
+  // console.log("Flash", req.flash)
   return new Promise(async (resolve, reject) => {
 
     //calling deployed ml model
@@ -206,7 +206,7 @@ module.exports.ProductPage=async(req,res)=>
           role="customer"
         
 
-        console.log("setting check",sid,data)
+        // console.log("setting check",sid,data)
         res.render("store/dropshipper/product.ejs", {
           product: productFound,
           st_name,
