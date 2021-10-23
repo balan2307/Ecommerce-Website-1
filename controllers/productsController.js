@@ -342,16 +342,23 @@ const store = await getStore(docID);
       }
 
     module.exports.ViewOrders = async (req, res) => {
-      const docID = req.session.store.id;
-      const orders = await db.collection("orders").where("storeId","==",docID).get()
-      let storeOrders = [];
+     
+      try{
+        const docID =req.session.store.id;
+        const orders = await db.collection("orders").where("storeId","==",docID).orderBy("createdAt","desc").get()
+        let storeOrders = [];
       orders.forEach(order=>storeOrders.push(order.data()));
-
       res.render("admin/orders-page", {
         message: req.flash("ProductsMessage"),
         orders: storeOrders,
         docID:docID,
       });
+      }
+      catch(err){
+        console.log(err);
+      }
+      
+
     };
       
 
