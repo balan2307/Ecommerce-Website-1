@@ -644,3 +644,7 @@ header label{
     }
 
 }
+
+.logo,.navbar a{
+    text-decoration: none;
+}

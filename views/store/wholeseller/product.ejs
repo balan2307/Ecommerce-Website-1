@@ -68,8 +68,9 @@
                 </select>
                 </div>
                 <% }%>
-              
-                <% if((role=="whole-seller" && (product.productInventory>settings.qty))||role=="drop-shipper"){ %>
+
+              <% console.log("Check settings",settings) %>
+                <% if(settings && product.productInventory>(settings.qty)){ %>
                 <div class="mt-4">
                  
                   <input type="text" name="sid"  id="sid" value="<%=id%>" hidden>
@@ -84,9 +85,10 @@
                   
                 </div>
                 
-                <% } else {%>
+                <% } else if(settings && product.productInventory<(settings.qty)) {%>
                   <h1>Out of Stock</h1>
                   <%} %>
+                  <span style="font-size: 1.2rem;">Sold by :<span style="font-weight: bold;"><%=st_name%></span></span>
               </div>
               <!-- <div class="d-flex align-items-center">
                 <button type="button" class="btn" id="btn-addtocart" >Add to cart

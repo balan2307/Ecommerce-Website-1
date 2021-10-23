@@ -37,6 +37,8 @@ module.exports.ViewProducts = async (req, res) => {
   // const docID = "HwvSNn14iO9nmgD8KYNK";
   // const docID="RhFCCBIUACGgKWafIeJE";
   const docID = req.session.store.id;
+  console.log("View products");
+
   // const docID="y9BmOPQtcrhdb9mfkZHa";
 
   const store = await getStore(docID);
@@ -236,12 +238,14 @@ const addProducts = async (req, res, docID, toastMessage,productId) => {
     productStatus,
     productDescription,
     productId: productId,
+   
   };
 
   // console.log(productObj);
   // console.log(req.file);
   let { buffer, originalname } = req.file;
   const timestamp = Math.floor(new Date().getTime() / 1000);
+  console.log("Timestamp",timestamp);
   originalname = originalname.trim().split(" ").join("-").split(".");
   originalname.pop();
   originalname = originalname[0]

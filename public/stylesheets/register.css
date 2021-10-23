@@ -10,12 +10,14 @@
 body {
   /* background-color:rgb(215, 226, 226); */
   /* background-color:#ffe8fe; */
-  background-color: rgb(193 199 199);
+  /* background-color: rgb(193 199 199); */
+  background-color: rgb(233 233 233);
   font-family: "Archivo", sans-serif;
 }
 .row {
   /* background-color:#eee0ff; */
-  background-color: #e9f6f7;
+  /* background-color: #e9f6f7; */
+  background-color: #fbfbfb;
   border-radius: 30px;
   margin-left: 15px;
   margin-right: 15px;
