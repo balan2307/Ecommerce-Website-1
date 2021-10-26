@@ -71,18 +71,28 @@ module.exports.register = async (req, res) => {
     const user = await db.collection("users").where("email", "==", email).get();
     try {
       const dbuser = user.docs[0];
-      const store = dbuser.data();
+      const store = await dbuser.data();
+      console.log("Try to log in ",email,password);
+      // let res=await bcrypt.compare(password, dbuser.data().password);
+      // console.log("Res",res);
+      const result=await bcrypt.compare(password, dbuser.data().password);
+      console.log("Result",result);
   
-      if (await bcrypt.compare(password, dbuser.data().password)) {
+      if (result) {
         store.id = dbuser.id;
         req.session.store = store;
+        console.log("Session check",req.session.store)
+        
         req.flash("success", "Welcome Back!");
+        console.log("Go to products");
         res.redirect("/admin/products");
       } else {
+        console.log("error 1")
         req.flash("ferror", "Entered Username or Password is Incorrect");
         res.redirect("/admin/login");
       }
     } catch {
+      console.log("error 2")
       req.flash("ferror", "Entered Username or Password is Incorrect");
       res.redirect("/admin/login");
     }

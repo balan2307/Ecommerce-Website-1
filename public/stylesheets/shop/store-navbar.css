@@ -64,6 +64,12 @@ html {
   #wrapper.toggled {
     padding-right: 250px;
   }
+
+  #logout-link
+  {
+    padding-right: 0;
+    padding-left: 0;
+  }
   
   #sidebar-wrapper {
     background-color: white;

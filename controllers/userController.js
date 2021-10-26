@@ -39,7 +39,10 @@ module.exports.StoreFront=async (req, res) => {
   let products=[]
   let st_name;
   let data;
-  role="drop-shipper"
+  let role;
+  if(user_role){
+  role=user_role.role;
+  }
 
   const store = await db
     .collection("users")
@@ -153,6 +156,7 @@ module.exports.ProductPage=async(req,res)=>
   let st_name;
   let data;
   let role;
+  // console.log("Flash", req.flash)
   return new Promise(async (resolve, reject) => {
 
     //calling deployed ml model
@@ -174,17 +178,18 @@ module.exports.ProductPage=async(req,res)=>
     user=data.products;
     st_name=data.store_name;
     settings=data.settings;
-    role=data.role;
-    // console.log("setting check",sid,data)
+   
+  
 
 
     productFound=user.find((product) => product.productId === pid);
 
     if(productFound)
     {
-      console.log("🚀 ~ file: userController.js ~ line 186 ~ .then ~ user_role", user_role)
+      // console.log("🚀 ~ file: userController.js ~ line 186 ~ .then ~ user_role", user_role)
       if(user_role)
       {
+        role=data.role;
         res.render("store/wholeseller/product.ejs", {
           product: productFound,
           st_name,
@@ -198,6 +203,10 @@ module.exports.ProductPage=async(req,res)=>
       }
       else
       {
+          role="customer"
+        
+
+        // console.log("setting check",sid,data)
         res.render("store/dropshipper/product.ejs", {
           product: productFound,
           st_name,
@@ -330,7 +339,16 @@ module.exports.renderAllproducts=async(req,res)=>
   let productFound;
   let user={};
   let products;
-  let role="drop-shipper";
+  let role;
+  if(user_role)
+  {
+  role=user_role.role;
+  }
+  else
+  {
+    role="customer";
+  }
+
 
   // console.log("check views");
   // async function addViews()
@@ -367,7 +385,7 @@ module.exports.renderAllproducts=async(req,res)=>
 
      if(user_role)
      {
-      res.render("store/wholeseller/allproducts.ejs",{user,products:testProd,id:sid,st_name,role});
+      res.render("store/wholeseller/allproducts.ejs",{user,products,id:sid,st_name,role});
 
      }
  
@@ -375,7 +393,7 @@ module.exports.renderAllproducts=async(req,res)=>
      else{
       res.render("store/dropshipper/allproducts.ejs", {
         user,
-        products: testProd,
+        products,
         id: sid,
         st_name,
         role,
@@ -487,6 +505,10 @@ module.exports.Updatedropshipper=async(req,res)=>
         .then((result) => {
           console.log("product inventory updated in store orders");
           console.log("Item bought")
+
+          req.flash("success", "Items bought successfully!");
+          console.log("Item bought by dropshipper");
+          res.redirect(`/store/shop/${sid}/product/${pid}`);
  
          
         })
@@ -506,9 +528,9 @@ module.exports.Updatedropshipper=async(req,res)=>
   // console.log("Drop",dropshipperProd)
   // console.log("Bought from",wholesellerProd)
 
-  req.flash("success", "Items bought successfully!");
-  console.log("Item bought by dropshipper");
-  res.redirect(`/store/shop/${sid}/product/${pid}`);
+  // req.flash("success", "Items bought successfully!");
+  // console.log("Item bought by dropshipper");
+  // res.redirect(`/store/shop/${sid}/product/${pid}`);
 
 }
 

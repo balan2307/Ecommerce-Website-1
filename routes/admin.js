@@ -41,7 +41,10 @@ router.route('/dashboard')
 //   .post(authController.register);
 
 router.route('/register')
-.get((req,res)=>res.render('admin/register'))
+.get((req,res)=>
+{
+  console.log("Register page called");
+  res.render('admin/register')})
 .post(authController.register)
 
 router.route('/login')
